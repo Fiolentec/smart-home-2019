@@ -1,7 +1,11 @@
 package ru.sbt.mipt.oop;
 
-public enum CommandType {
-    LIGHT_OFF{
+public enum DoorTypeEvent {
+    DOOR_OPEN {
+        public boolean getState(){
+            return true;
+        }
+    }, DOOR_CLOSED{
         public boolean getState(){
             return false;
         }

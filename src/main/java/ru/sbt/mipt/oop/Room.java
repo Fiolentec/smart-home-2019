@@ -24,4 +24,11 @@ public class Room {
     public String getName() {
         return name;
     }
+
+    public void lightOff(){
+        for(Light l: lights){
+            l.setState(false);
+            System.out.println("Pretent we're sending command " + new SensorCommand(CommandType.LIGHT_OFF,l.getId()));
+        }
+    }
 }

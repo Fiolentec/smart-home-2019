@@ -1,12 +1,15 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light extends RoomObject{
     private boolean isOn;
-    private final String id;
+    private static final String[] st = {" was turned on."," was turned off."};
+
+    private Room room;
 
     public Light(String id, boolean isOn) {
-        this.id = id;
+        super(id);
         this.isOn = isOn;
+        this.room = null;
     }
 
     public boolean isOn() {
@@ -17,7 +20,17 @@ public class Light {
         return id;
     }
 
-    public void setOn(boolean on) {
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    @Override
+    public void setState(boolean on) {
         isOn = on;
     }
+
+    @Override
+    public String getString(){
+        return "Light " + this.getId() + " in room " +  room.getName() + ((isOn)? st[0]:st[1]);
+    };
 }
