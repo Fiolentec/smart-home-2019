@@ -10,6 +10,10 @@ public class Application {
         JsonSmartHomeStateProvider json = new JsonSmartHomeStateProvider(path);
         SmartHome smartHome = json.provideSmartHome();
         // начинаем цикл обработки событий
+        start(smartHome);
+    }
+
+    private static void start(SmartHome smartHome) {
         Event event = getNextEvent();
         while (event != null) {
             eventHandler(smartHome, event);
