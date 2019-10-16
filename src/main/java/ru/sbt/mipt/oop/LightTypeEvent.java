@@ -2,13 +2,13 @@ package ru.sbt.mipt.oop;
 
 public enum LightTypeEvent {
     LIGHT_ON{
-        public boolean getState(){
-            return true;
+        public States getState(){
+            return States.LIGHT_ON;
         }
     }, LIGHT_OFF{
-        public boolean getState(){
-            return false;
+        public States getState(){
+            return States.LIGHT_OFF;
         }
     };
-    abstract boolean getState();
+    abstract States getState();
 }

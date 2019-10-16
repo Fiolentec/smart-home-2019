@@ -21,8 +21,8 @@ public class Event implements ObjectFinder,GetStateToChange{
     }
 
     @Override
-    public boolean getState() {
-        return false;
+    public States getState() {
+        return States.DOOR_CLOSED;
     }
 
     @Override

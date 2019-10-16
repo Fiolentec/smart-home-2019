@@ -10,19 +10,11 @@ public class LightEvent extends Event implements ObjectFinder, GetStateToChange 
 
     @Override
     public RoomObject findObject(SmartHome home) {
-        for (Room room : home.getRooms()) {
-            for (Light light : room.getLights()) {
-                if (light.getId().equals(this.getObjectId())) {
-                    light.setRoom(room);
-                    return light;
-                }
-            }
-        }
-        return null;
+        return home.findLight(this.getObjectId());
     }
 
     @Override
-    public boolean getState() {
+    public States getState() {
         return type.getState();
     }
 

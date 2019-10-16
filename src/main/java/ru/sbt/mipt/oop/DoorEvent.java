@@ -10,19 +10,11 @@ public class DoorEvent extends Event implements ObjectFinder,GetStateToChange {
 
     @Override
     public RoomObject findObject(SmartHome home) {
-        for (Room room : home.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals(this.getObjectId())) {
-                    door.setRoom(room);
-                    return door;
-                }
-            }
-        }
-        return null;
+        return home.findDoor(this.getObjectId());
     }
 
     @Override
-    public boolean getState() {
+    public States getState() {
         return type.getState();
     }
 

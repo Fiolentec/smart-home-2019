@@ -2,13 +2,13 @@ package ru.sbt.mipt.oop;
 
 public enum DoorTypeEvent {
     DOOR_OPEN {
-        public boolean getState(){
-            return true;
+        public States getState(){
+            return States.DOOR_OPEN;
         }
-    }, DOOR_CLOSED{
-        public boolean getState(){
-            return false;
+    }, DOOR_CLOSE{
+        public States getState(){
+            return States.DOOR_CLOSED;
         }
     };
-    abstract boolean getState();
+    abstract States getState();
 }

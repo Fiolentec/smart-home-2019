@@ -1,11 +1,11 @@
 package ru.sbt.mipt.oop;
 
-public class Door extends RoomObject{
+public class Door extends RoomObject implements RoomObjectInterface{
     private static final String[] st = {" was opened."," was closed."};
-    private boolean isOpen;
-    private Room room;
+    private States isOpen;
+    private SmartHome home;
 
-    public Door(boolean isOpen, String id) {
+    public Door(States isOpen, String id) {
         super(id);
         this.isOpen = isOpen;
     }
@@ -15,19 +15,20 @@ public class Door extends RoomObject{
     }
 
     @Override
-    public void setState(boolean open) {
+    public void setState(States open) {
         isOpen = open;
-        if (room.getName().equals("hall")){
-            room.lightOff();
+        if (home.findRoomForDoor(this.getId()).getName().equals("hall")&&open.equals(States.DOOR_CLOSED)){
+            home.lightOff();
         }
     }
 
     @Override
     public String getString(){
-        return "Door " + this.getId() + " in room " +  room.getName() + ((isOpen)? st[0]:st[1]);
+        return "Door " + this.getId() + " in room " + home.findRoomForDoor(this.getId()).getName() + (isOpen.getString());
     };
 
-    public void setRoom(Room room) {
-        this.room = room;
+    @Override
+    public void setHome(SmartHome home) {
+        this.home = home;
     }
 }

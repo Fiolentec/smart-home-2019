@@ -1,36 +1,43 @@
 package ru.sbt.mipt.oop;
 
-public class Light extends RoomObject{
-    private boolean isOn;
-    private static final String[] st = {" was turned on."," was turned off."};
+public class Light extends RoomObject implements RoomObjectInterface {
+    private States isOn;
+    private static final String[] st = {" was turned on.", " was turned off."};
+    private SmartHome home;
 
-    private Room room;
-
-    public Light(String id, boolean isOn) {
+    public Light(String id, String isOn) {
         super(id);
-        this.isOn = isOn;
-        this.room = null;
+        this.isOn = States.valueOf(isOn);
     }
 
-    public boolean isOn() {
+    public Light(String id, States isOn) {
+        super(id);
+        this.isOn = isOn;
+    }
+
+    public States isOn() {
         return isOn;
     }
 
-    public String getId() {
+    String getId() {
         return id;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
     @Override
-    public void setState(boolean on) {
+    public void setState(States on) {
         isOn = on;
     }
 
     @Override
-    public String getString(){
-        return "Light " + this.getId() + " in room " +  room.getName() + ((isOn)? st[0]:st[1]);
-    };
+    public void setHome(SmartHome home) {
+        this.home = home;
+    }
+
+    @Override
+    public String getString() {
+        return "Light " + this.getId() + " in room " + home.findRoomForLight(this.getId()).getName() + (isOn.getString());
+    }
+
+    ;
 }

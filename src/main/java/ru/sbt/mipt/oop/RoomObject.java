@@ -1,12 +1,13 @@
 package ru.sbt.mipt.oop;
 
-public class RoomObject {
+public class RoomObject implements RoomObjectInterface {
     final String id;
 
     public RoomObject(String id) {
         this.id = id;
     }
 
-    public void setState(boolean mean){};
+    public void setState(States mean){};
+    public void setHome(SmartHome home){};
     public String getString(){return "";};
 }
