@@ -1,9 +1,10 @@
 package ru.sbt.mipt.oop;
 
+import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.Collection;
 
-public class Room {
+public class Room implements Actionable{
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
@@ -38,4 +39,18 @@ public class Room {
         }
     }
 
+    @Override
+    public void execute(Action action) {
+        LightIterator lightIterator = new LightIterator(home);
+        while (lightIterator.hasNext()){
+            RoomObject ro = lightIterator.getNext();
+            ro.execute(action);
+        }
+        DoorIterator doorIterator = new DoorIterator(home);
+        while (doorIterator.hasNext()){
+            RoomObject ro = lightIterator.getNext();
+            ro.execute(action);
+        }
+        action.run(this);
+    }
 }

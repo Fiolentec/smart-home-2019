@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface SmartHomeProvider {
     SmartHome provideSmartHome();
-    void setHomeToAll(SmartHome smartHome, List<String> names);
+    void setHomeToAll(SmartHome smartHome);
 }

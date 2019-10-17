@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop;
 
-public class Light extends RoomObject implements RoomObjectInterface {
+import javax.swing.*;
+
+public class Light extends RoomObject implements RoomObjectInterface,Actionable {
     private States isOn;
     private static final String[] st = {" was turned on.", " was turned off."};
     private SmartHome home;
@@ -19,7 +21,8 @@ public class Light extends RoomObject implements RoomObjectInterface {
         return isOn;
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return id;
     }
 
@@ -37,6 +40,15 @@ public class Light extends RoomObject implements RoomObjectInterface {
     @Override
     public String getString() {
         return "Light " + this.getId() + " in room " + home.findRoomForLight(this.getId()).getName() + (isOn.getString());
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.run(this);
+    }
+
+    public States getState() {
+        return isOn;
     }
 
     ;

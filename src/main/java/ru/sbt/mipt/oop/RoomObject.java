@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop;
 
-public class RoomObject implements RoomObjectInterface {
+import javax.swing.*;
+
+public class RoomObject implements RoomObjectInterface,Actionable {
     final String id;
 
     public RoomObject(String id) {
@@ -10,4 +12,10 @@ public class RoomObject implements RoomObjectInterface {
     public void setState(States mean){};
     public void setHome(SmartHome home){};
     public String getString(){return "";};
+    public String getId(){return "";};
+
+    @Override
+    public void execute(Action action) {
+        action.run(this);
+    }
 }
