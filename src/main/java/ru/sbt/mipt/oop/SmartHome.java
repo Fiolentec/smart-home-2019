@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 
 public class SmartHome implements Actionable {
     private Collection<Room> rooms;
@@ -106,13 +107,13 @@ public class SmartHome implements Actionable {
     }
 
     @Override
-    public void execute(Action action) {
+    public void execute(Function<Object,Void> action) {
         RoomIterator roomIterator = new RoomIterator(this);
         while (roomIterator.hasNext()){
             Room room = roomIterator.next();
             room.execute(action);
         }
-        action.run(this);
+        action.apply(this);
     }
 
     public void setHomeToAll() {

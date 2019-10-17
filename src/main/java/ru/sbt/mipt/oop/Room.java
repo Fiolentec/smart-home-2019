@@ -3,6 +3,7 @@ package ru.sbt.mipt.oop;
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.function.Function;
 
 public class Room implements Actionable{
     private Collection<Light> lights;
@@ -40,7 +41,7 @@ public class Room implements Actionable{
     }
 
     @Override
-    public void execute(Action action) {
+    public void execute(Function<Object,Void> action) {
         LightIterator lightIterator = new LightIterator(home);
         while (lightIterator.hasNext()){
             RoomObject ro = lightIterator.getNext();
@@ -51,6 +52,6 @@ public class Room implements Actionable{
             RoomObject ro = lightIterator.getNext();
             ro.execute(action);
         }
-        action.run(this);
+        action.apply(this);
     }
 }

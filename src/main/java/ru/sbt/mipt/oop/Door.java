@@ -46,8 +46,8 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable{
     }
 
     @Override
-    public void execute(Action action) {
-        action.run(this);
+    public void execute(Function<Object,Void> action) {
+        action.apply(this);
     }
 
     public States getState() {
