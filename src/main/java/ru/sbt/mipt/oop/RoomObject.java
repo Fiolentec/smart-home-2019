@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
 import javax.swing.*;
+import java.util.function.Function;
 
 public class RoomObject implements RoomObjectInterface,Actionable {
     final String id;
@@ -14,8 +15,8 @@ public class RoomObject implements RoomObjectInterface,Actionable {
     public String getString(){return "";};
     public String getId(){return "";};
 
+
     @Override
-    public void execute(Action action) {
-        action.run(this);
+    public void execute(Function<Object, Void> action) {
     }
 }

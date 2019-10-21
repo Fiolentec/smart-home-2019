@@ -80,7 +80,6 @@ public class SmartHome implements Actionable {
     }
 
     Room findRoomForDoor(String id){
-
         for (Room room : rooms) {
             for (Door door : room.getDoors()) {
                 if (door.getId().equals(id)) {
@@ -92,12 +91,12 @@ public class SmartHome implements Actionable {
     }
 
     void lightOff(){
-        for (Room r:rooms){
-            for (Light l : r.getLights()) {
-                l.setState(States.LIGHT_OFF);
-                System.out.println("Pretent we're sending command " + new SensorCommand(CommandType.LIGHT_OFF, l.getId()));
-            }
-        }
+        rooms.forEach(room -> {
+            room.getLights().forEach(light -> {
+                light.setState(States.LIGHT_OFF);
+                System.out.println("Pretent we're sending command " + new SensorCommand(CommandType.LIGHT_OFF, light.getId()));
+            });
+        });
     }
 
     public void setHome(Collection<RoomObject> o){
@@ -108,22 +107,33 @@ public class SmartHome implements Actionable {
 
     @Override
     public void execute(Function<Object,Void> action) {
-        RoomIterator roomIterator = new RoomIterator(this);
-        while (roomIterator.hasNext()){
-            Room room = roomIterator.next();
+        rooms.forEach(room -> {
             room.execute(action);
-        }
+        });
+//        RoomIterator roomIterator = new RoomIterator(this);
+//        while (roomIterator.hasNext()){
+//            Room room = roomIterator.next();
+//            room.execute(action);
+//        }
         action.apply(this);
     }
 
     public void setHomeToAll() {
-        for (Room room:this.getRooms()){
-            for (Door door: room.getDoors()){
+        rooms.forEach(room -> {
+            room.getDoors().forEach(door -> {
                 door.setHome(this);
-            }
-            for (Light light:room.getLights()){
+            });
+            room.getLights().forEach(light -> {
                 light.setHome(this);
-            }
-        }
+            });
+        });
+//        for (Room room:this.getRooms()){
+//            for (Door door: room.getDoors()){
+//                door.setHome(this);
+//            }
+//            for (Light light:room.getLights()){
+//                light.setHome(this);
+//            }
+//        }
     }
 }

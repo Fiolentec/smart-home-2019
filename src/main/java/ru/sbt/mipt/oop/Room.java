@@ -3,6 +3,8 @@ package ru.sbt.mipt.oop;
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Room implements Actionable{
@@ -42,16 +44,13 @@ public class Room implements Actionable{
 
     @Override
     public void execute(Function<Object,Void> action) {
-        LightIterator lightIterator = new LightIterator(home);
-        while (lightIterator.hasNext()){
-            RoomObject ro = lightIterator.getNext();
-            ro.execute(action);
-        }
-        DoorIterator doorIterator = new DoorIterator(home);
-        while (doorIterator.hasNext()){
-            RoomObject ro = lightIterator.getNext();
-            ro.execute(action);
-        }
+        lights.forEach(light -> {
+            light.execute(action);
+        });
+        doors.forEach(door -> {
+            door.execute(action);
+        });
         action.apply(this);
     }
+
 }
