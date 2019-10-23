@@ -17,9 +17,9 @@ public class Door extends RoomObject implements RoomObjectInterface{
     @Override
     public void setState(States open) {
         isOpen = open;
-        if (home.findRoomForDoor(this.getId()).getName().equals("hall")&&open.equals(States.DOOR_CLOSED)){
-            home.lightOff();
-        }
+//        if (home.findRoomForDoor(this.getId()).getName().equals("hall")&&open.equals(States.DOOR_CLOSED)){
+//            home.lightOff();
+//        }
     }
 
     @Override
