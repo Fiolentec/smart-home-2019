@@ -9,11 +9,11 @@ class EventHandler {
 
     void handleEvent(Event event) {
         System.out.println("Got event: " + event);
-        RoomObject ro = event.findObject(home);
-        if (ro != null) {
+        RoomObject ro = findObject(event);
+        if ((ro != null)) {
             checkHallDoorEvent(event);
-            System.out.println(ro.getString());//print info about event
             ro.setState(event.getState());//set state of event
+            System.out.println(ro.getString());//print info about event
         } else {
             System.out.println("Object not found or act is not right");
         }
@@ -21,11 +21,23 @@ class EventHandler {
 
     private void checkHallDoorEvent(Event event){
         if (event instanceof DoorEvent){
-            RoomObject ro = event.findObject(home);
-            if((home.findRoomForDoor(((Door)ro).getId()).getName().equals("hall")&&(event.getType().equals("DOOR_CLOSE")))){
-                home.lightOff();
+            RoomObject ro = home.findObject(event.getObjectId());
+            if (ro instanceof Door){
+                if((home.findRoomForDoor(((Door)ro).getId()).getName().equals("hall")&&(event.getType().equals("DOOR_CLOSE")))){
+                    home.lightOff();
+                }
             }
         }
+    }
+
+    private RoomObject findObject(Event event){
+        if((event instanceof LightEvent)){
+            return home.findLight(event.getObjectId());
+        }
+        if((event instanceof DoorEvent)){
+            return home.findDoor(event.getObjectId());
+        }
+        return null;
     }
 
 }

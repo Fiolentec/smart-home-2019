@@ -82,6 +82,22 @@ public class SmartHome {
         }
     }
 
+    public RoomObject findObject(String id){
+        for (Room room:rooms){
+            for (Light light:room.getLights()){
+                if (light.getId().equals(id)){
+                    return light;
+                }
+            }
+            for (Door door:room.getDoors()){
+                if (door.getId().equals(id)){
+                    return door;
+                }
+            }
+        }
+        return null;
+    }
+
     public void setHome(Collection<RoomObject> o){
         for (RoomObject ro: o) {
             ro.setHome(this);
