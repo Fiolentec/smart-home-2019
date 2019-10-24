@@ -39,5 +39,4 @@ public class Light extends RoomObject implements RoomObjectInterface {
         return "Light " + this.getId() + " in room " + home.findRoomForLight(this.getId()).getName() + (isOn.getString());
     }
 
-    ;
 }

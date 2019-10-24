@@ -31,13 +31,12 @@ public class JsonSmartHomeStateProvider implements SmartHomeProvider {
             return new SmartHome();
         }
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
-        List<String> names = Arrays.asList("home","name");
-        setHomeToAll(smartHome, names);
+        setHomeToAll(smartHome);
         return smartHome;
     }
 
     @Override
-    public void setHomeToAll(SmartHome smartHome, List<String> notRoomObjects) {
+    public void setHomeToAll(SmartHome smartHome) {
         for (Room room:smartHome.getRooms()){
             for (Door door: room.getDoors()){
                 door.setHome(smartHome);
