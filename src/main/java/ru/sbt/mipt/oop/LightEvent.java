@@ -3,7 +3,7 @@ package ru.sbt.mipt.oop;
 public class LightEvent extends Event implements ObjectFinder, GetStateToChange {
     private LightTypeEvent type;
 
-    public LightEvent(String id, LightTypeEvent type) {
+    LightEvent(String id, LightTypeEvent type) {
         super(id);
         this.type = type;
     }

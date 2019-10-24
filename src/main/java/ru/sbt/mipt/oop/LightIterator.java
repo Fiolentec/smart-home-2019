@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop;
 
 import java.util.Iterator;
 
-public class LightIterator implements RoomObjectIteratorInterface{
+public class LightIterator implements RoomObjectIteratorInterface {
     private SmartHome smartHome;
     private Iterator<Room> roomIterator;
     private Iterator<Light> lightIterator;
@@ -24,11 +24,11 @@ public class LightIterator implements RoomObjectIteratorInterface{
 
     @Override
     public Light getNext() {
-        if (hasNext()){
-            if((lightIterator!=null)&&(lightIterator.hasNext())){
+        if (hasNext()) {
+            if ((lightIterator != null) && (lightIterator.hasNext())) {
                 currentLight = lightIterator.next();
                 return currentLight;
-            }else {
+            } else {
                 currentRoom = roomIterator.next();
                 lightIterator = currentRoom.getLights().iterator();
                 currentLight = lightIterator.next();

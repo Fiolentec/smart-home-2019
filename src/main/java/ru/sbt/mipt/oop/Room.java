@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class Room implements Actionable{
+public class Room implements Actionable {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
@@ -36,14 +36,14 @@ public class Room implements Actionable{
     }
 
 
-    public void setHome(Collection<RoomObject> o){
-        for (RoomObject ro: o) {
+    public void setHome(Collection<RoomObject> o) {
+        for (RoomObject ro : o) {
             ro.setHome(this.home);
         }
     }
 
     @Override
-    public void execute(Function<Object,Void> action) {
+    public void execute(Function<Object, Void> action) {
         lights.forEach(light -> {
             light.execute(action);
         });

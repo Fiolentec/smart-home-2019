@@ -18,7 +18,7 @@ public class RoomIterator implements Iterator {
 
     @Override
     public Room next() {
-        if(roomIterator.hasNext())
+        if (roomIterator.hasNext())
             return roomIterator.next();
         return null;
     }

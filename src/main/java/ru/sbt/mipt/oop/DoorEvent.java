@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class DoorEvent extends Event implements ObjectFinder,GetStateToChange {
+public class DoorEvent extends Event implements ObjectFinder, GetStateToChange {
     private DoorTypeEvent type;
 
-    public DoorEvent(String id,DoorTypeEvent type) {
+    public DoorEvent(String id, DoorTypeEvent type) {
         super(id);
         this.type = type;
     }
@@ -19,7 +19,7 @@ public class DoorEvent extends Event implements ObjectFinder,GetStateToChange {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return type.toString();
     }
 

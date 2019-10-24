@@ -3,7 +3,7 @@ package ru.sbt.mipt.oop;
 import javax.swing.*;
 import java.util.function.Function;
 
-public class Light extends RoomObject implements RoomObjectInterface,Actionable {
+public class Light extends RoomObject implements RoomObjectInterface, Actionable {
     private States isOn;
     private static final String[] st = {" was turned on.", " was turned off."};
     private SmartHome home;
@@ -44,7 +44,7 @@ public class Light extends RoomObject implements RoomObjectInterface,Actionable 
     }
 
     @Override
-    public void execute(Function<Object,Void> action) {
+    public void execute(Function<Object, Void> action) {
         action.apply(this);
     }
 
@@ -52,5 +52,4 @@ public class Light extends RoomObject implements RoomObjectInterface,Actionable 
         return isOn;
     }
 
-    ;
 }

@@ -24,11 +24,11 @@ public class DoorIterator implements RoomObjectIteratorInterface {
 
     @Override
     public RoomObject getNext() {
-        if (hasNext()){
-            if((doorIterator!=null)&&(doorIterator.hasNext())){
+        if (hasNext()) {
+            if ((doorIterator != null) && (doorIterator.hasNext())) {
                 currentDoor = doorIterator.next();
                 return currentDoor;
-            }else {
+            } else {
                 currentRoom = roomIterator.next();
                 doorIterator = currentRoom.getDoors().iterator();
                 currentDoor = doorIterator.next();

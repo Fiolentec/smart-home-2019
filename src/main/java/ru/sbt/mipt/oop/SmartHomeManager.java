@@ -15,7 +15,7 @@ public class SmartHomeManager {
         this.eventGenerator = eventGenerator;
     }
 
-    public void startTrackingEvents(){
+    public void startTrackingEvents() {
         Event event = eventGenerator.generateEvent();
         while (event != null) {
             eventHandler.handleEvent(event);
@@ -23,15 +23,15 @@ public class SmartHomeManager {
         }
     }
 
-    public void setHomeAll(){
-        for (Field f: Room.class.getDeclaredFields()) {
+    public void setHomeAll() {
+        for (Field f : Room.class.getDeclaredFields()) {
             System.out.println("i'm here, guyzzzzzzzzzzz");
             System.out.println(f.getName());
-            if(f.getClass().equals(RoomObject.class)){
+            if (f.getClass().equals(RoomObject.class)) {
                 f.setAccessible(true);
                 try {
                     this.home.setHome((Collection<RoomObject>) f.get(f));
-                }catch (IllegalAccessException e){
+                } catch (IllegalAccessException e) {
                     System.out.println("Something went wrong");
                 }
 

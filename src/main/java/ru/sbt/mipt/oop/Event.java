@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Event implements ObjectFinder,GetStateToChange{
+public class Event implements ObjectFinder, GetStateToChange {
     private final String objectId;
 
     Event(String objectId) {
@@ -11,12 +11,16 @@ public class Event implements ObjectFinder,GetStateToChange{
         return objectId;
     }
 
-    public String getType(){
+    public String getType() {
         return "";
     }
 
+    BaseEventHandler getHandler() {
+        return new RoomObjectEventHandler(this);
+    }
+
     @Override
-    public RoomObject findObject(SmartHome home) {
+    public Object findObject(SmartHome home) {
         return null;
     }
 
@@ -26,7 +30,7 @@ public class Event implements ObjectFinder,GetStateToChange{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "SensorEvent{" +
                 "type=" + this.getType() +
                 ", objectId='" + this.getObjectId() + '\'' +
