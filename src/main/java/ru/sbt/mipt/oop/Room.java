@@ -1,10 +1,10 @@
 package ru.sbt.mipt.oop;
 
-import javax.swing.*;
-import java.lang.reflect.Field;
+import ru.sbt.mipt.oop.RoomObjects.Door;
+import ru.sbt.mipt.oop.RoomObjects.Light;
+import ru.sbt.mipt.oop.RoomObjects.RoomObject;
+
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Room implements Actionable {

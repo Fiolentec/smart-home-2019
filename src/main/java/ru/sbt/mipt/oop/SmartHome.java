@@ -1,9 +1,12 @@
 package ru.sbt.mipt.oop;
 
-import javax.swing.*;
+import ru.sbt.mipt.oop.Alarm.Alarm;
+import ru.sbt.mipt.oop.RoomObjects.Door;
+import ru.sbt.mipt.oop.RoomObjects.Light;
+import ru.sbt.mipt.oop.RoomObjects.RoomObject;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 
 public class SmartHome implements Actionable {
@@ -33,33 +36,33 @@ public class SmartHome implements Actionable {
         room.setHome(this);
     }
 
-    Collection<Room> getRooms() {
+    public Collection<Room> getRooms() {
         return rooms;
     }
 
-    RoomObject findDoor(String id) {
-        DoorIterator iterator = new DoorIterator(this);
-        while (iterator.hasNext()) {
-            RoomObject object = iterator.getNext();
-            if (object.getId().equals(id)) {
-                return object;
+    public RoomObject findDoor(String id) {
+        for (Room room :rooms){
+            for (Door door:room.getDoors()){
+                if(door.getId().equals(id)){
+                    return door;
+                }
             }
         }
         return null;
     }
 
-    RoomObject findLight(String id) {
-        LightIterator iterator = new LightIterator(this);
-        while (iterator.hasNext()) {
-            RoomObject object = iterator.getNext();
-            if (object.getId().equals(id)) {
-                return object;
+    public RoomObject findLight(String id) {
+        for (Room room :rooms){
+            for (Light light:room.getLights()){
+                if(light.getId().equals(id)){
+                    return light;
+                }
             }
         }
         return null;
     }
 
-    Room findRoomForLight(String id) {
+    public Room findRoomForLight(String id) {
         for (Room room : rooms) {
             for (Light light : room.getLights()) {
                 if (light.getId().equals(id)) {
@@ -70,7 +73,7 @@ public class SmartHome implements Actionable {
         return null;
     }
 
-    Room findRoomForDoor(String id) {
+    public Room findRoomForDoor(String id) {
         for (Room room : rooms) {
             for (Door door : room.getDoors()) {
                 if (door.getId().equals(id)) {
@@ -81,7 +84,7 @@ public class SmartHome implements Actionable {
         return null;
     }
 
-    void lightOff() {
+    public void lightOff() {
         rooms.forEach(room -> {
             room.getLights().forEach(light -> {
                 light.setState(States.LIGHT_OFF);
@@ -117,5 +120,9 @@ public class SmartHome implements Actionable {
                 light.setHome(this);
             });
         });
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

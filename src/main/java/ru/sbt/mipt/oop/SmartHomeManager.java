@@ -1,7 +1,7 @@
 package ru.sbt.mipt.oop;
 
-import java.lang.reflect.Field;
-import java.util.Collection;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.Events.Event;
 
 public class SmartHomeManager {
     private SmartHome home;
@@ -23,19 +23,4 @@ public class SmartHomeManager {
         }
     }
 
-    public void setHomeAll() {
-        for (Field f : Room.class.getDeclaredFields()) {
-            System.out.println("i'm here, guyzzzzzzzzzzz");
-            System.out.println(f.getName());
-            if (f.getClass().equals(RoomObject.class)) {
-                f.setAccessible(true);
-                try {
-                    this.home.setHome((Collection<RoomObject>) f.get(f));
-                } catch (IllegalAccessException e) {
-                    System.out.println("Something went wrong");
-                }
-
-            }
-        }
-    }
 }

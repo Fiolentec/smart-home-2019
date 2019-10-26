@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
 import java.io.IOException;
 
 public class Application {
