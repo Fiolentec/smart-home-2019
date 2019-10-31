@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Event implements ObjectFinder,GetStateToChange{
+public class Event implements GetStateToChange{
     private final String objectId;
 
     Event(String objectId) {
@@ -13,11 +13,6 @@ public class Event implements ObjectFinder,GetStateToChange{
 
     public String getType(){
         return "";
-    }
-
-    @Override
-    public RoomObject findObject(SmartHome home) {
-        return null;
     }
 
     @Override

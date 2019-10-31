@@ -28,7 +28,12 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable{
     public void setState(States open) {
         isOpen = open;
         if (home.findRoomForDoor(this.getId()).getName().equals("hall")&&open.equals(States.DOOR_CLOSED)){
-            home.lightOff();
+            home.execute(object ->{
+                if (object instanceof Light){
+                    ((Light) object).setState(States.LIGHT_OFF);
+                }
+                return null;
+            });
         }
     }
 

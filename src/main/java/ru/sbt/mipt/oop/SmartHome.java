@@ -39,13 +39,6 @@ public class SmartHome implements Actionable {
                 return object;
             }
         }
-//        for (Room room : this.getRooms()) {
-//            for (Door door : room.getDoors()) {
-//                if (door.getId().equals(id)) {
-//                    return door;
-//                }
-//            }
-//        }
         return null;
     }
 
@@ -57,14 +50,6 @@ public class SmartHome implements Actionable {
                 return object;
             }
         }
-//        for (Room room : rooms) {
-//            for (Light light : room.getLights()) {
-//                if (light.getId().equals(id)) {
-////                    light.setRoom(room);
-//                    return light;
-//                }
-//            }
-//        }
         return null;
     }
 
@@ -90,15 +75,6 @@ public class SmartHome implements Actionable {
         return null;
     }
 
-    void lightOff(){
-        rooms.forEach(room -> {
-            room.getLights().forEach(light -> {
-                light.setState(States.LIGHT_OFF);
-                System.out.println("Pretent we're sending command " + new SensorCommand(CommandType.LIGHT_OFF, light.getId()));
-            });
-        });
-    }
-
     public void setHome(Collection<RoomObject> o){
         for (RoomObject ro: o) {
             ro.setHome(this);
@@ -110,11 +86,6 @@ public class SmartHome implements Actionable {
         rooms.forEach(room -> {
             room.execute(action);
         });
-//        RoomIterator roomIterator = new RoomIterator(this);
-//        while (roomIterator.hasNext()){
-//            Room room = roomIterator.next();
-//            room.execute(action);
-//        }
         action.apply(this);
     }
 
@@ -127,13 +98,5 @@ public class SmartHome implements Actionable {
                 light.setHome(this);
             });
         });
-//        for (Room room:this.getRooms()){
-//            for (Door door: room.getDoors()){
-//                door.setHome(this);
-//            }
-//            for (Light light:room.getLights()){
-//                light.setHome(this);
-//            }
-//        }
     }
 }

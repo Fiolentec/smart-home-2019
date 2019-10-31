@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class LightEvent extends Event implements ObjectFinder, GetStateToChange {
+public class LightEvent extends Event implements GetStateToChange {
     private LightTypeEvent type;
 
     public LightEvent(String id, LightTypeEvent type) {
@@ -8,10 +8,6 @@ public class LightEvent extends Event implements ObjectFinder, GetStateToChange 
         this.type = type;
     }
 
-    @Override
-    public RoomObject findObject(SmartHome home) {
-        return home.findLight(this.getObjectId());
-    }
 
     @Override
     public States getState() {
