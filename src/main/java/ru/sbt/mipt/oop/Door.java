@@ -27,14 +27,6 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable{
     @Override
     public void setState(States open) {
         isOpen = open;
-        if (home.findRoomForDoor(this.getId()).getName().equals("hall")&&open.equals(States.DOOR_CLOSED)){
-            home.execute(object ->{
-                if (object instanceof Light){
-                    ((Light) object).setState(States.LIGHT_OFF);
-                }
-                return null;
-            });
-        }
     }
 
     @Override
@@ -51,8 +43,8 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable{
     }
 
     @Override
-    public void execute(Function<Object,Void> action) {
-        action.apply(this);
+    public void execute(Action action) {
+        action.execute(this);
     }
 
     public States getState() {

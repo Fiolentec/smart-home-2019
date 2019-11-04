@@ -17,6 +17,6 @@ public class RoomObject implements RoomObjectInterface,Actionable {
 
 
     @Override
-    public void execute(Function<Object, Void> action) {
+    public void execute(Action action) {
     }
 }
