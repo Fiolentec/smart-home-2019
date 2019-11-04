@@ -1,24 +1,24 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.EventHandlers.EventHandlerMy;
 import ru.sbt.mipt.oop.Events.Event;
 
 public class SmartHomeManager {
     private SmartHome home;
-    private EventHandler eventHandler;
+    private EventHandlerMy eventHandlerMy;
     private EventGenerator eventGenerator;
 
 
-    public SmartHomeManager(SmartHome home, EventHandler eventHandler, EventGenerator eventGenerator) {
+    public SmartHomeManager(SmartHome home, EventHandlerMy eventHandlerMy, EventGenerator eventGenerator) {
         this.home = home;
-        this.eventHandler = eventHandler;
+        this.eventHandlerMy = eventHandlerMy;
         this.eventGenerator = eventGenerator;
     }
 
     public void startTrackingEvents() {
         Event event = eventGenerator.generateEvent();
         while (event != null) {
-            eventHandler.handleEvent(event);
+            eventHandlerMy.handleEvent(event);
             event = eventGenerator.generateEvent();
         }
     }

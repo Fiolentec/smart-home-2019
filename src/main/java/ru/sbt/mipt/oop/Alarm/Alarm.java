@@ -3,7 +3,7 @@ package ru.sbt.mipt.oop.Alarm;
 import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.Events.Event;
 
-public class Alarm {
+public class Alarm implements Actionable {
     private AlarmStateInterface state;
     private SmartHome smartHome;
     private final int timeSleep;
@@ -74,5 +74,10 @@ public class Alarm {
 
     public String getString() {
         return "Alarm" + (state.getString());
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
     }
 }

@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.API.SensorEventsManager;
+import ru.sbt.mipt.oop.EventHandlers.*;
 
 import java.io.IOException;
 
@@ -12,11 +13,21 @@ public class Application {
         JsonSmartHomeStateProvider json = new JsonSmartHomeStateProvider(path);
         SmartHome smartHome = json.provideSmartHome();
         //создам обработчик событий и генератор событий
-        EventHandler eventHandler = new EventHandler(smartHome);
-        EventGenerator eventGenerator = new EventGenerator();
-        // начинаем цикл обработки событий
-        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandler, eventGenerator);
-        smartHomeManager.startTrackingEvents();
+        SensorEventsManager sensorEventsManager = new SensorEventsManager();
+        sensorEventsManager.registerEventHandler(event -> {
+            System.out.println("Event type [" + event.getEventType() + "] from object with id=[" + event.getObjectId() + "]");
+        });
+        sensorEventsManager.registerEventHandler(new DoorEventHandler(smartHome));
+        sensorEventsManager.registerEventHandler(new LightEventHandler(smartHome));
+        sensorEventsManager.registerEventHandler(new HallDoorEventHandler(smartHome));
+        sensorEventsManager.registerEventHandler(new AlarmEventHandler(smartHome));
+        sensorEventsManager.start();
+
+//        EventHandlerMy eventHandlerMy = new EventHandlerMy(smartHome);
+//        EventGenerator eventGenerator = new EventGenerator();
+//        // начинаем цикл обработки событий
+//        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandlerMy, eventGenerator);
+//        smartHomeManager.startTrackingEvents();
     }
 
 

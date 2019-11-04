@@ -21,6 +21,16 @@ public enum States {
             return " was closed.";
         }
     },
+    DOOR_LOCKED{
+        public String getString() {
+            return " was locked.";
+        }
+    },
+    DOOR_UNLOCKED{
+        public String getString() {
+            return " was unlocked.";
+        }
+    },
     ALARM_ACTIVATE {
         public String getString() {
             return " was activated.";

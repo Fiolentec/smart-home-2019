@@ -4,11 +4,11 @@ import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 
 public class LightEvent extends Event implements GetStateToChange {
-    private LightTypeEvent type;
+//    private TypeEvent type;
 
-    public LightEvent(String id, LightTypeEvent type) {
-        super(id);
-        this.type = type;
+    public LightEvent(String id, TypeEvent type) {
+        super(id,type);
+//        this.type = type;
     }
 
     @Override

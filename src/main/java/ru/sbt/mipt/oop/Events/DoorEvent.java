@@ -4,21 +4,21 @@ import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 
 public class DoorEvent extends Event implements GetStateToChange {
-    private DoorTypeEvent type;
+//    private TypeEvent type;
 
-    public DoorEvent(String id, DoorTypeEvent type) {
-        super(id);
-        this.type = type;
+    public DoorEvent(String id, TypeEvent type) {
+        super(id,type);
+//        this.type = type;
     }
 
     @Override
     public States getState() {
-        return type.getState();
+        return this.type.getState();
     }
 
     @Override
     public String getType() {
-        return type.toString();
+        return super.type.toString();
     }
 
 }

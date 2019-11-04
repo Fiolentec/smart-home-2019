@@ -100,11 +100,12 @@ public class SmartHome implements Actionable {
     }
 
     @Override
-    public void execute(Function<Object, Void> action) {
+    public void execute(Action action) {
         rooms.forEach(room -> {
             room.execute(action);
         });
-        action.apply(this);
+        alarm.execute(action);
+        action.execute(this);
     }
 
     public Alarm getAlarm() {

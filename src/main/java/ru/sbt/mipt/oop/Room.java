@@ -43,14 +43,14 @@ public class Room implements Actionable {
     }
 
     @Override
-    public void execute(Function<Object, Void> action) {
+    public void execute(Action action) {
         lights.forEach(light -> {
             light.execute(action);
         });
         doors.forEach(door -> {
             door.execute(action);
         });
-        action.apply(this);
+        action.execute(this);
     }
 
 }

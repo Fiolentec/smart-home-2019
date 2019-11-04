@@ -5,12 +5,12 @@ import ru.sbt.mipt.oop.EventHandlers.AlarmEventHandler;
 import ru.sbt.mipt.oop.EventHandlers.BaseEventHandler;
 
 public class AlarmEvent extends Event implements GetStateToChange  {
-    private AlarmTypeEvent type;
+//    private TypeEvent type;
     private String code;
 
-    public AlarmEvent(String objectId, AlarmTypeEvent type, String code) {
-        super(objectId);
-        this.type = type;
+    public AlarmEvent(String objectId, TypeEvent type, String code) {
+        super(objectId,type);
+//        this.type = type;
         this.code = code;
     }
 
@@ -23,10 +23,10 @@ public class AlarmEvent extends Event implements GetStateToChange  {
         return type.toString();
     }
 
-    @Override
-    public BaseEventHandler getHandler() {
-        return new AlarmEventHandler(this);
-    }
+//    @Override
+//    public BaseEventHandler getHandler() {
+//        return new AlarmEventHandler(this);
+//    }
 
 
     @Override

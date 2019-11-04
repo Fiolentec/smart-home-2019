@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop.RoomObjects;
 
+import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
@@ -29,6 +30,6 @@ public class RoomObject implements RoomObjectInterface, Actionable {
 
 
     @Override
-    public void execute(Function<Object, Void> action) {
+    public void execute(Action action) {
     }
 }
