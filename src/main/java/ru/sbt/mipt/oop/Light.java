@@ -18,10 +18,6 @@ public class Light extends RoomObject implements RoomObjectInterface,Actionable 
         this.isOn = isOn;
     }
 
-    public States isOn() {
-        return isOn;
-    }
-
     @Override
     public String getId() {
         return id;

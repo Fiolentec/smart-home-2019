@@ -26,7 +26,6 @@ class EventHandlerTest {
     @org.junit.jupiter.api.Test
     void handleEvent() {
         smartHome.setHomeToAll();
-//        smartHome.addRoom(room);
         eventHandler.handleEvent(event1);
         Assert.assertEquals(light1.getState(),States.LIGHT_ON);
         eventHandler.handleEvent(event2);

@@ -17,14 +17,12 @@ public class SmartHome implements Actionable {
         this.rooms = rooms;
         for (Room r:rooms) {
             r.setHome(this);
-//            r.setHomeForAll();
         }
     }
 
     public void addRoom(Room room) {
         rooms.add(room);
         room.setHome(this);
-//        room.setHomeForAll();
     }
 
     public Collection<Room> getRooms() {
