@@ -20,7 +20,6 @@ class AlarmTest {
     Room room = new Room(lights, doors, "hall");
     List<Room> roomList = Arrays.asList(room);
     SmartHome smartHome = new SmartHome(roomList);
-    Alarm alarm = new Alarm(smartHome);
 
 
     @Test
@@ -37,47 +36,42 @@ class AlarmTest {
 
     @Test
     void DeactivatedAlarmAfterActivateBecomeActivated() {
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActivated);
     }
 
     @Test
     void ActivatedAlarmAfterActivateDoesnotChange() {
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
         AlarmStateInterface ala = alarm.getState();
-        alarm.activate("12345");
         assertEquals(ala, alarm.getState());
     }
 
     @Test
     void ActivatedAlarmAfterRightDeactivateBecomeDeactivatedAlarm() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmDeactivated);
     }
 
     @Test
     void ActivatedAlarmAfterNotRightDeactivateBecomeActiveStateAlarm() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
     }
 
     @Test
     void ActiveStateAlarmDoesnotChangesAfterDeactivateAndActivate() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("1236");
-        assertTrue(alarm.getState() instanceof AlarmActiveState);
-        alarm.activate("123");
-        assertTrue(alarm.getState() instanceof AlarmActiveState);
-        alarm.activate("2324");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
     }
 

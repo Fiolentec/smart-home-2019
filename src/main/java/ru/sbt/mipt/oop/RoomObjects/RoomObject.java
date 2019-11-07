@@ -17,12 +17,6 @@ public class RoomObject implements RoomObjectInterface, Actionable {
     public void setState(States mean) {
     }
 
-    public void setHome(SmartHome home) {
-    }
-
-    public String getString() {
-        return "";
-    }
 
     public String getId() {
         return "";

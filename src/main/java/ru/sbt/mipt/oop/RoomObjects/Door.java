@@ -29,20 +29,6 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable 
     @Override
     public void setState(States open) {
         isOpen = open;
-        if (home.findRoomForDoor(this.getId()).getName().equals("hall") && open.equals(States.DOOR_CLOSED)) {
-            home.lightOff();
-        }
-    }
-
-    @Override
-    public String getString() {
-        return "Door " + this.getId() + " in room " + home.findRoomForDoor(this.getId()).getName() + (isOpen.getString());
-    }
-
-
-    @Override
-    public void setHome(SmartHome home) {
-        this.home = home;
     }
 
     @Override

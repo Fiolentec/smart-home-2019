@@ -22,10 +22,6 @@ public class Light extends RoomObject implements RoomObjectInterface, Actionable
         this.isOn = isOn;
     }
 
-    public States isOn() {
-        return isOn;
-    }
-
     @Override
     public String getId() {
         return id;
@@ -35,16 +31,6 @@ public class Light extends RoomObject implements RoomObjectInterface, Actionable
     @Override
     public void setState(States on) {
         isOn = on;
-    }
-
-    @Override
-    public void setHome(SmartHome home) {
-        this.home = home;
-    }
-
-    @Override
-    public String getString() {
-        return "Light " + this.getId() + " in room " + home.findRoomForLight(this.getId()).getName() + (isOn.getString());
     }
 
     @Override

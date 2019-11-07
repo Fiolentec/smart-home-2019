@@ -3,13 +3,16 @@ package ru.sbt.mipt.oop.Alarm;
 import ru.sbt.mipt.oop.Events.Event;
 
 public class AlarmDeactivated implements AlarmStateInterface {
-    public AlarmDeactivated() {
+    String code;
+
+    public AlarmDeactivated(String code) {
+        code = code;
     }
 
     @Override
-    public AlarmStateInterface activate(String code) {
-        System.out.println("Activate alarm with code " + code);
-        return new AlarmActivated(code);
+    public AlarmStateInterface activate() {
+        System.out.println("Activate alarm with code " + this.code);
+        return new AlarmActivated(this.code);
     }
 
     @Override

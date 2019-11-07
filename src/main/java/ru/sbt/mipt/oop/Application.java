@@ -13,6 +13,20 @@ public class Application {
         JsonSmartHomeStateProvider json = new JsonSmartHomeStateProvider(path);
         SmartHome smartHome = json.provideSmartHome();
         //создам обработчик событий и генератор событий
+        StartApiManager(smartHome);
+
+//        StartMyApp(smartHome);
+    }
+
+    private static void StartMyApp(SmartHome smartHome) {
+        EventHandlerMy eventHandlerMy = new EventHandlerMy(smartHome);
+        EventGenerator eventGenerator = new EventGenerator();
+        // начинаем цикл обработки событий
+        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandlerMy, eventGenerator);
+        smartHomeManager.startTrackingEvents();
+    }
+
+    private static void StartApiManager(SmartHome smartHome) {
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
         sensorEventsManager.registerEventHandler(event -> {
             System.out.println("Event type [" + event.getEventType() + "] from object with id=[" + event.getObjectId() + "]");
@@ -22,12 +36,6 @@ public class Application {
         sensorEventsManager.registerEventHandler(new HallDoorEventHandler(smartHome));
         sensorEventsManager.registerEventHandler(new AlarmEventHandler(smartHome));
         sensorEventsManager.start();
-
-//        EventHandlerMy eventHandlerMy = new EventHandlerMy(smartHome);
-//        EventGenerator eventGenerator = new EventGenerator();
-//        // начинаем цикл обработки событий
-//        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandlerMy, eventGenerator);
-//        smartHomeManager.startTrackingEvents();
     }
 
 

@@ -5,7 +5,7 @@ import ru.sbt.mipt.oop.Events.Event;
 public class AlarmActiveState implements AlarmStateInterface {
 
     @Override
-    public AlarmStateInterface activate(String code) {
+    public AlarmStateInterface activate() {
         return this;
     }
 

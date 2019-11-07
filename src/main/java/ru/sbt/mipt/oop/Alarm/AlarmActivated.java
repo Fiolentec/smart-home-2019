@@ -11,7 +11,7 @@ public class AlarmActivated implements AlarmStateInterface {
     }
 
     @Override
-    public AlarmStateInterface activate(String code) {
+    public AlarmStateInterface activate() {
         System.out.println("Try activate activated alarm with code " + this.code);
         return this;
     }
@@ -20,7 +20,7 @@ public class AlarmActivated implements AlarmStateInterface {
     public AlarmStateInterface deactivate(String code) {
         System.out.println("Deactivate activated alarm with code " + code + " right code - " + this.code);
         if (this.code.equals(code)) {
-            return new AlarmDeactivated();
+            return new AlarmDeactivated(code);
         } else {
             return new AlarmActiveState();
         }

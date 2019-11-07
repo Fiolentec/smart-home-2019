@@ -8,23 +8,26 @@ public class Alarm implements Actionable {
     private SmartHome smartHome;
     private final int timeSleep;
     private final String id;
+    private final String code;
 
     public Alarm(SmartHome smartHome) {
         this.id = "id";
         this.timeSleep = 5;
-        this.state = new AlarmDeactivated();
+        this.code = "1234";
+        this.state = new AlarmDeactivated(code);
         this.smartHome = smartHome;
     }
 
-    public Alarm(SmartHome smartHome, int timeSleep, String id) {
+    public Alarm(SmartHome smartHome, int timeSleep, String id,String code) {
         this.timeSleep = timeSleep;
         this.id = id;
-        this.state = new AlarmDeactivated();
+        this.state = new AlarmDeactivated(code);
         this.smartHome = smartHome;
+        this.code = code;
     }
 
-    public void activate(String code) {
-        state = state.activate(code);
+    public void activate() {
+        state = state.activate();
     }
 
     public void deactivate(String code) {
@@ -38,7 +41,7 @@ public class Alarm implements Actionable {
         state.takeHomeEvent(event);
     }
 
-    private void startAlarm() {
+    public void startAlarm() {
         startSiren();
         while (true) {
             try {
@@ -49,7 +52,6 @@ public class Alarm implements Actionable {
             smartHome.getRooms().forEach(room -> {
                 room.getLights().forEach(light -> {
                     light.setState((Math.random() > 0.5) ? States.LIGHT_OFF : States.LIGHT_ON);
-                    System.out.println(light.getString());
                 });
             });
             sendMessage();

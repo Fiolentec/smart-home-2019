@@ -35,13 +35,6 @@ public class Room implements Actionable {
         return name;
     }
 
-
-    public void setHome(Collection<RoomObject> o) {
-        for (RoomObject ro : o) {
-            ro.setHome(this.home);
-        }
-    }
-
     @Override
     public void execute(Action action) {
         lights.forEach(light -> {

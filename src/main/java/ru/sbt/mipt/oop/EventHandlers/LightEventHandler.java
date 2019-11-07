@@ -20,7 +20,7 @@ public class LightEventHandler extends BaseEventHandler implements EventHandler 
             smartHome.execute(object -> {
                 if ((object instanceof Light) && (((Light) object).getId().equals(event.getObjectId()))) {
                     ((Light) object).setState(event.getState());
-                    System.out.println(((Light) object).getString());
+                    smartHome.execute(event.getActionToPrint());
                 }
             });
         }

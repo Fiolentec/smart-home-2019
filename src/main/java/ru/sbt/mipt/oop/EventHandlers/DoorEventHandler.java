@@ -20,7 +20,7 @@ public class DoorEventHandler extends BaseEventHandler implements EventHandler {
             smartHome.execute(object -> {
                 if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId()))) {
                     ((Door) object).setState(event.getState());
-                    System.out.println(((Door) object).getString());
+                    smartHome.execute(event.getActionToPrint());
                 }
             });
         }

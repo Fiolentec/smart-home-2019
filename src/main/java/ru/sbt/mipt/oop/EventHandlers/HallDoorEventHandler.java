@@ -5,6 +5,7 @@ import ru.sbt.mipt.oop.API.EventHandler;
 import ru.sbt.mipt.oop.Events.DoorEvent;
 import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.Events.EventsAdapter;
+import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
@@ -18,17 +19,18 @@ public class HallDoorEventHandler extends BaseEventHandler implements EventHandl
 
     @Override
     void handleEvent(Event event){
-        if (event instanceof DoorEvent){
-            smartHome.execute(obj -> {
-                if ((obj instanceof Door)&&(((Door) obj).getId().equals(event.getObjectId()))){
-                    if((smartHome.findRoomForDoor(event.getObjectId())).getName().equals("hall")&&(event.getType().equals("DOOR_CLOSE"))){
-                        smartHome.execute(object ->{
-                            if (object instanceof Light){
-                                ((Light) object).setState(States.LIGHT_OFF);
-                                System.out.println(((Light) object).getString());
-                            }
-                        });
-                    }
+        if ((event instanceof DoorEvent)&&(event.getType().equals("DOOR_CLOSE"))){
+            smartHome.execute(objectUp ->{
+                if ((objectUp instanceof Room)){
+                    ((Room) objectUp).execute(object ->{
+                        if ((object instanceof Door)&&(((Door) object).getId().equals(event.getObjectId()))&&(((Room) objectUp).getName().equals("hall"))){
+                            smartHome.execute(obj -> {
+                                if(obj instanceof Light){
+                                    ((Light) obj).setState(States.LIGHT_OFF);
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }

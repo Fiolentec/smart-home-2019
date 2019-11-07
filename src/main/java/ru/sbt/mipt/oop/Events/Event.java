@@ -1,11 +1,12 @@
 package ru.sbt.mipt.oop.Events;
 
+import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.EventHandlers.BaseEventHandler;
 import ru.sbt.mipt.oop.GetStateToChange;
 //import ru.sbt.mipt.oop.EventHandlers.RoomObjectEventHandler;
 import ru.sbt.mipt.oop.States;
 
-public class Event implements GetStateToChange {
+public class Event implements GetStateToChange,GetAction, GetActionToPrint {
     private final String objectId;
     TypeEvent type;
 
@@ -22,10 +23,6 @@ public class Event implements GetStateToChange {
         return "";
     }
 
-//    public BaseEventHandler getHandler() {
-//        return new RoomObjectEventHandler(this);
-//    }
-
     @Override
     public States getState() {
         return States.DOOR_CLOSED;
@@ -37,5 +34,15 @@ public class Event implements GetStateToChange {
                 "type=" + this.getType() +
                 ", objectId='" + this.getObjectId() + '\'' +
                 '}';
+    }
+
+    @Override
+    public Action getActionToPrint() {
+        return null;
+    }
+
+    @Override
+    public Action getAction() {
+        return null;
     }
 }
