@@ -15,7 +15,7 @@ public class SmartHomeManager {
         this.eventGenerator = eventGenerator;
     }
 
-    public void startTrackingEvents(){
+    public void startTrackingEvents() {
         Event event = eventGenerator.generateEvent();
         while (event != null) {
             eventHandler.handleEvent(event);

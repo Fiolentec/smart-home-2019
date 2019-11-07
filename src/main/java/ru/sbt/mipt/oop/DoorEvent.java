@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class DoorEvent extends Event implements GetStateToChange,GetAction, GetActionToPrint {
+public class DoorEvent extends Event implements GetStateToChange, GetAction, GetActionToPrint {
     private DoorTypeEvent type;
 
-    public DoorEvent(String id,DoorTypeEvent type) {
+    public DoorEvent(String id, DoorTypeEvent type) {
         super(id);
         this.type = type;
     }
@@ -14,28 +14,32 @@ public class DoorEvent extends Event implements GetStateToChange,GetAction, GetA
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return type.toString();
     }
 
     @Override
-    public Action getAction(){
+    public Action getAction() {
         return object -> {
-            if((object instanceof Door)&&(((Door)object).getId().equals(this.getObjectId()))){
-                ((Door)object).setState(this.getState());
+            if ((object instanceof Door) && (((Door) object).getId().equals(this.getObjectId()))) {
+                ((Door) object).setState(this.getState());
             }
         };
     }
 
     @Override
-    public Action getActionToPrint(){
-        return object -> {
-            if((object instanceof Door)&&(((Door)object).getId().equals(this.getObjectId()))){
-                System.out.println(((Door)object).getString());
+    public Action getActionToPrint() {
+        return objectUp -> {
+            if (objectUp instanceof Room) {
+                ((Room) objectUp).execute(object -> {
+                    if ((object instanceof Door) && (((Door) object).getId().equals(this.getObjectId()))) {
+                        String s = String.format("Door %s in room %s %s", ((Door) object).getId(), ((Room) objectUp).getName(), ((Door) object).getState().getString());
+                        System.out.println(s);
+                    }
+                });
             }
         };
     }
-
 
 
 }

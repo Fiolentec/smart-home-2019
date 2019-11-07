@@ -4,17 +4,15 @@ import java.util.function.Function;
 
 import javax.swing.*;
 
-public class Door extends RoomObject implements RoomObjectInterface, Actionable{
-    private static final String[] st = {" was opened."," was closed."};
+public class Door extends RoomObject implements RoomObjectInterface, Actionable {
     private States isOpen;
-    private SmartHome home;
 
-    public Door(String id,States isOpen) {
+    public Door(String id, States isOpen) {
         super(id);
         this.isOpen = isOpen;
     }
 
-    public Door(String id,String isOpen) {
+    public Door(String id, String isOpen) {
         super(id);
         this.isOpen = States.valueOf(isOpen);
     }
@@ -27,19 +25,6 @@ public class Door extends RoomObject implements RoomObjectInterface, Actionable{
     @Override
     public void setState(States open) {
         isOpen = open;
-    }
-
-    @Override
-    public String getString(){
-        return "Door " + this.getId() + " in room " + home.findRoomForDoor(this.getId()).getName() + (isOpen.getString());
-    }
-
-
-    ;
-
-    @Override
-    public void setHome(SmartHome home) {
-        this.home = home;
     }
 
     @Override
