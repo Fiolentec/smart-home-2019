@@ -40,28 +40,6 @@ public class SmartHome implements Actionable {
         return rooms;
     }
 
-    public RoomObject findDoor(String id) {
-        for (Room room :rooms){
-            for (Door door:room.getDoors()){
-                if(door.getId().equals(id)){
-                    return door;
-                }
-            }
-        }
-        return null;
-    }
-
-    public RoomObject findLight(String id) {
-        for (Room room :rooms){
-            for (Light light:room.getLights()){
-                if(light.getId().equals(id)){
-                    return light;
-                }
-            }
-        }
-        return null;
-    }
-
     public Room findRoomForLight(String id) {
         for (Room room : rooms) {
             for (Light light : room.getLights()) {

@@ -9,7 +9,6 @@ import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
 public class AlarmEventHandler extends BaseEventHandler implements EventHandler {
-//    private Event event;
 
     public AlarmEventHandler(SmartHome smartHome) {
         super(smartHome);
@@ -26,16 +25,6 @@ public class AlarmEventHandler extends BaseEventHandler implements EventHandler 
                 }
             }
         });
-//        if (alarm != null) {
-////            System.out.println(((Alarm) alarm).getString());
-//            if (event.getState().equals(States.ALARM_ACTIVATE)) {
-//                ((Alarm) alarm).activate(((AlarmEvent) event).getCode());
-//            } else if (event.getState().equals(States.ALARM_DEACTIVATE)) {
-//                ((Alarm) alarm).deactivate(((AlarmEvent) event).getCode());
-//            }
-//        } else {
-//            System.out.println("Object not found or act is not right");
-//        }
     }
 
     @Override
