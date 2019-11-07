@@ -7,6 +7,8 @@ import ru.sbt.mipt.oop.RoomObjects.Light;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class JsonSmartHomeStateProvider implements SmartHomeProvider {
     String path;
@@ -27,21 +29,7 @@ public class JsonSmartHomeStateProvider implements SmartHomeProvider {
             return new SmartHome();
         }
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
-        setHomeToAll(smartHome);
         return smartHome;
     }
-
-    @Override
-    public void setHomeToAll(SmartHome smartHome) {
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                door.setHome(smartHome);
-            }
-            for (Light light : room.getLights()) {
-                light.setHome(smartHome);
-            }
-        }
-    }
-
 
 }

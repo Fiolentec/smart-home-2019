@@ -3,36 +3,38 @@ package ru.sbt.mipt.oop.EventHandlers;
 import ru.sbt.mipt.oop.Events.DoorEvent;
 import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.Events.LightEvent;
+import ru.sbt.mipt.oop.Room;
+import ru.sbt.mipt.oop.RoomObjects.Door;
+import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
+import ru.sbt.mipt.oop.States;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventHandler {
-    private SmartHome home;
+    private SmartHome smartHome;
+
+    List<BaseEventHandler> eventHandlers;
+    private AlarmEventHandler alarmEventHandler;
+    private DoorEventHandler doorEventHandler;
+    private HallDoorEventHandler hallDoorEventHandler;
+    private LightEventHandler lightEventHandler;
 
     public EventHandler(SmartHome home) {
-        this.home = home;
+        this.smartHome = home;
+        eventHandlers = new ArrayList<>();
+        eventHandlers.add(new AlarmEventHandler(smartHome));
+        eventHandlers.add(new DoorEventHandler(smartHome));
+        eventHandlers.add(new HallDoorEventHandler(smartHome));
+        eventHandlers.add(new LightEventHandler(smartHome));
     }
 
     public void handleEvent(Event event) {
         System.out.println("Got event: " + event);
-        Object ro = findObject(event);
-        BaseEventHandler eventHandler = event.getHandler();
-        eventHandler.handleEvent(ro);
-        if (ro != null) {
-            home.getAlarm().takeHomeEvent(event);
-        }
-    }
-
-    private Object findObject(Event event){
-        if (event.getObjectId().equals("alarm")){
-            return home.getAlarm();
-        }
-        if((event instanceof LightEvent)){
-            return home.findLight(event.getObjectId());
-        }
-        if((event instanceof DoorEvent)){
-            return home.findDoor(event.getObjectId());
-        }
-        return null;
+        eventHandlers.forEach(object ->{
+            object.handleEvent(event);
+        });
     }
 
 }

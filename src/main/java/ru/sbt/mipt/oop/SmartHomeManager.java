@@ -22,5 +22,4 @@ public class SmartHomeManager {
             event = eventGenerator.generateEvent();
         }
     }
-
 }

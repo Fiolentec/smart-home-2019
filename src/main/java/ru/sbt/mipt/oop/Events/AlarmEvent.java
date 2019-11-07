@@ -24,12 +24,6 @@ public class AlarmEvent extends Event implements GetStateToChange  {
     }
 
     @Override
-    public BaseEventHandler getHandler() {
-        return new AlarmEventHandler(this);
-    }
-
-
-    @Override
     public States getState() {
         return type.getState();
     }

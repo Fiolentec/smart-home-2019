@@ -1,6 +1,15 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
+import ru.sbt.mipt.oop.Events.Event;
+import ru.sbt.mipt.oop.SmartHome;
+
 public class BaseEventHandler {
-    void handleEvent(Object o) {
+    SmartHome smartHome;
+
+    public BaseEventHandler(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
+
+    void handleEvent(Event event) {
     }
 }

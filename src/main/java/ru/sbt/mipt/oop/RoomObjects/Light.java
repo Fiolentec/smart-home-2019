@@ -1,15 +1,11 @@
 package ru.sbt.mipt.oop.RoomObjects;
 
 import ru.sbt.mipt.oop.Actionable;
-import ru.sbt.mipt.oop.SmartHome;
+import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.States;
-
-import java.util.function.Function;
 
 public class Light extends RoomObject implements RoomObjectInterface, Actionable {
     private States isOn;
-    private static final String[] st = {" was turned on.", " was turned off."};
-    private SmartHome home;
 
     public Light(String id, String isOn) {
         super(id);
@@ -19,10 +15,6 @@ public class Light extends RoomObject implements RoomObjectInterface, Actionable
     public Light(String id, States isOn) {
         super(id);
         this.isOn = isOn;
-    }
-
-    public States isOn() {
-        return isOn;
     }
 
     @Override
@@ -36,19 +28,8 @@ public class Light extends RoomObject implements RoomObjectInterface, Actionable
         isOn = on;
     }
 
-    @Override
-    public void setHome(SmartHome home) {
-        this.home = home;
-    }
-
-    @Override
-    public String getString() {
-        return "Light " + this.getId() + " in room " + home.findRoomForLight(this.getId()).getName() + (isOn.getString());
-    }
-
-    @Override
-    public void execute(Function<Object, Void> action) {
-        action.apply(this);
+    public void execute(Action action) {
+        action.execute(this);
     }
 
     public States getState() {

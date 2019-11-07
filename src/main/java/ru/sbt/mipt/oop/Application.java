@@ -11,11 +11,11 @@ public class Application {
         // считываем состояние дома из файла
         JsonSmartHomeStateProvider json = new JsonSmartHomeStateProvider(path);
         SmartHome smartHome = json.provideSmartHome();
-        //создам обработчик событий и генератор событий
-        EventHandler eventHandler = new EventHandler(smartHome);
+
+        EventHandler eventHandlerMy = new EventHandler(smartHome);
         EventGenerator eventGenerator = new EventGenerator();
         // начинаем цикл обработки событий
-        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandler, eventGenerator);
+        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandlerMy, eventGenerator);
         smartHomeManager.startTrackingEvents();
     }
 

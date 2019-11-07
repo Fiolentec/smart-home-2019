@@ -49,7 +49,6 @@ public class Alarm {
             smartHome.getRooms().forEach(room -> {
                 room.getLights().forEach(light -> {
                     light.setState((Math.random() > 0.5) ? States.LIGHT_OFF : States.LIGHT_ON);
-                    System.out.println(light.getString());
                 });
             });
             sendMessage();
