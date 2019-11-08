@@ -1,23 +1,39 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
-    private boolean isOn;
-    private final String id;
+import javax.swing.*;
+import java.util.function.Function;
 
-    public Light(String id, boolean isOn) {
-        this.id = id;
+public class Light extends RoomObject implements RoomObjectInterface, Actionable {
+    private States isOn;
+
+    public Light(String id, String isOn) {
+        super(id);
+        this.isOn = States.valueOf(isOn);
+    }
+
+    public Light(String id, States isOn) {
+        super(id);
         this.isOn = isOn;
     }
 
-    public boolean isOn() {
-        return isOn;
-    }
-
+    @Override
     public String getId() {
         return id;
     }
 
-    public void setOn(boolean on) {
+
+    @Override
+    public void setState(States on) {
         isOn = on;
     }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
+    }
+
+    public States getState() {
+        return isOn;
+    }
+
 }
