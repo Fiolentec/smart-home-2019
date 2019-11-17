@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.EventHandlers.EventProcessor;
 
 import java.io.IOException;
 
@@ -12,10 +12,10 @@ public class Application {
         JsonSmartHomeStateProvider json = new JsonSmartHomeStateProvider(path);
         SmartHome smartHome = json.provideSmartHome();
 
-        EventHandler eventHandlerMy = new EventHandler(smartHome);
+        EventProcessor eventProcessorMy = new EventProcessor(smartHome);
         EventGenerator eventGenerator = new EventGenerator();
         // начинаем цикл обработки событий
-        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventHandlerMy, eventGenerator);
+        SmartHomeManager smartHomeManager = new SmartHomeManager(smartHome, eventProcessorMy, eventGenerator);
         smartHomeManager.startTrackingEvents();
     }
 

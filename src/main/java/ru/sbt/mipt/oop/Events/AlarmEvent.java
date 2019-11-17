@@ -1,21 +1,26 @@
 package ru.sbt.mipt.oop.Events;
 
-import ru.sbt.mipt.oop.*;
-import ru.sbt.mipt.oop.EventHandlers.AlarmEventHandler;
-import ru.sbt.mipt.oop.EventHandlers.BaseEventHandler;
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.States;
 
-public class AlarmEvent extends Event implements GetStateToChange  {
+public class AlarmEvent implements Event {
     private AlarmTypeEvent type;
     private String code;
+    private String objectId;
 
     public AlarmEvent(String objectId, AlarmTypeEvent type, String code) {
-        super(objectId);
+        this.objectId = objectId;
         this.type = type;
         this.code = code;
     }
 
     public String getCode() {
         return code;
+    }
+
+    @Override
+    public String getObjectId() {
+        return objectId;
     }
 
     @Override
@@ -26,6 +31,24 @@ public class AlarmEvent extends Event implements GetStateToChange  {
     @Override
     public States getState() {
         return type.getState();
+    }
+
+    @Override
+    public Action getAction() {
+        return null;
+    }
+
+    @Override
+    public Action getActionToPrint() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorEvent{" +
+                "type=" + this.getType() +
+                ", objectId='" + this.getObjectId() + '\'' +
+                '}';
     }
 
 }

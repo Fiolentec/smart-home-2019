@@ -1,14 +1,10 @@
 package ru.sbt.mipt.oop;
 
 import com.google.gson.Gson;
-import ru.sbt.mipt.oop.RoomObjects.Door;
-import ru.sbt.mipt.oop.RoomObjects.Light;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 
 public class JsonSmartHomeStateProvider implements SmartHomeProvider {
     String path;

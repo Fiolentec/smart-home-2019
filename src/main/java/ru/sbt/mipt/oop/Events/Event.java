@@ -1,42 +1,23 @@
 package ru.sbt.mipt.oop.Events;
 
-import ru.sbt.mipt.oop.*;
-import ru.sbt.mipt.oop.EventHandlers.BaseEventHandler;
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.States;
 
-public class Event implements GetStateToChange, GetAction, GetActionToPrint {
-    private final String objectId;
+public interface Event {
 
-    Event(String objectId) {
-        this.objectId = objectId;
-    }
+//    Event(String objectId) {
+//        this.objectId = objectId;
+//    }
 
-    public String getObjectId() {
-        return objectId;
-    }
+    String getObjectId();
 
-    public String getType() {
-        return "";
-    }
+    String getType();
 
-    @Override
-    public States getState() {
-        return States.DOOR_CLOSED;
-    }
+    States getState();
 
-    @Override
-    public Action getAction() {
-        return null;
-    }
+    Action getAction();
 
-    public String toString() {
-        return "SensorEvent{" +
-                "type=" + this.getType() +
-                ", objectId='" + this.getObjectId() + '\'' +
-                '}';
-    }
+    String toString();
 
-    @Override
-    public Action getActionToPrint() {
-        return null;
-    }
+    Action getActionToPrint();
 }

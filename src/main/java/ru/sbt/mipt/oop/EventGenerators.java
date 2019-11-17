@@ -2,6 +2,6 @@ package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.Events.Event;
 
-public interface EventGeneratorInterface {
+public interface EventGenerators {
     Event generateEvent();
 }

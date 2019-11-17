@@ -1,30 +1,26 @@
 package ru.sbt.mipt.oop.Alarm;
 
-import ru.sbt.mipt.oop.Events.Event;
+import ru.sbt.mipt.oop.Action;
 
 public class AlarmDeactivated implements AlarmStateInterface {
     public AlarmDeactivated() {
     }
 
     @Override
-    public AlarmStateInterface activate(String code) {
-        System.out.println("Activate alarm with code " + code);
-        return new AlarmActivated(code);
+    public Action activate() {
+        return obj -> {
+            System.out.println("Activate alarm");
+            if (obj instanceof Alarm) {
+                ((Alarm) obj).setState(new AlarmActivated());
+            }
+        };
     }
 
     @Override
-    public AlarmStateInterface deactivate(String code) {
-        System.out.println("Try deactivate deactivated alarm");
-        return this;
+    public Action deactivate(String code) {
+        return obj -> {
+            System.out.println("Try deactivate deactivated alarm");
+        };
     }
 
-    @Override
-    public AlarmStateInterface takeHomeEvent(Event event) {
-        return this;
-    }
-
-    @Override
-    public String getString() {
-        return " was deactivated.";
-    }
 }

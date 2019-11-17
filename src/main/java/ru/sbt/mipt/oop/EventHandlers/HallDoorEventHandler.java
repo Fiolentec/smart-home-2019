@@ -8,21 +8,22 @@ import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
-public class HallDoorEventHandler extends BaseEventHandler{
+public class HallDoorEventHandler implements EventHandler {
+    SmartHome smartHome;
 
     public HallDoorEventHandler(SmartHome smartHome) {
-        super(smartHome);
+        this.smartHome = smartHome;
     }
 
     @Override
-    void handleEvent(Event event){
-        if ((event instanceof DoorEvent)&&(event.getType().equals("DOOR_CLOSE"))){
-            smartHome.execute(objectUp ->{
-                if ((objectUp instanceof Room)){
-                    ((Room) objectUp).execute(object ->{
-                        if ((object instanceof Door)&&(((Door) object).getId().equals(event.getObjectId()))&&(((Room) objectUp).getName().equals("hall"))){
+    public void handleEvent(Event event) {
+        if ((event instanceof DoorEvent) && (event.getType().equals("DOOR_CLOSE"))) {
+            smartHome.execute(objectUp -> {
+                if ((objectUp instanceof Room)) {
+                    ((Room) objectUp).execute(object -> {
+                        if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId())) && (((Room) objectUp).getName().equals("hall"))) {
                             smartHome.execute(obj -> {
-                                if(obj instanceof Light){
+                                if (obj instanceof Light) {
                                     ((Light) obj).setState(States.LIGHT_OFF);
                                 }
                             });

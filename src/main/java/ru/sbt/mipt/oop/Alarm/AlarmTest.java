@@ -9,7 +9,8 @@ import ru.sbt.mipt.oop.SmartHome;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AlarmTest {
     Light light1 = new Light("1", "LIGHT_OFF");
@@ -20,7 +21,6 @@ class AlarmTest {
     Room room = new Room(lights, doors, "hall");
     List<Room> roomList = Arrays.asList(room);
     SmartHome smartHome = new SmartHome(roomList);
-    Alarm alarm = new Alarm(smartHome);
 
 
     @Test
@@ -37,48 +37,69 @@ class AlarmTest {
 
     @Test
     void DeactivatedAlarmAfterActivateBecomeActivated() {
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActivated);
     }
 
     @Test
     void ActivatedAlarmAfterActivateDoesnotChange() {
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         AlarmStateInterface ala = alarm.getState();
-        alarm.activate("12345");
+        alarm.activate();
         assertEquals(ala, alarm.getState());
     }
 
     @Test
     void ActivatedAlarmAfterRightDeactivateBecomeDeactivatedAlarm() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmDeactivated);
     }
 
     @Test
     void ActivatedAlarmAfterNotRightDeactivateBecomeActiveStateAlarm() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
     }
 
     @Test
     void ActiveStateAlarmDoesnotChangesAfterDeactivateAndActivate() {
-        Alarm alarm = new Alarm(smartHome);
-        alarm.activate("123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
-        alarm.activate("123");
+        alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActiveState);
-        alarm.activate("2324");
+        alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActiveState);
     }
+
+    @Test
+    void TryDeactivateAlarmActiveStateWithRightCode() {
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.startAlarm();
+        alarm.deactivate("123");
+        assertTrue(alarm.getState() instanceof AlarmDeactivated);
+    }
+
+    @Test
+    void TryDeactivateAlarmActiveStateWithWrongCode() {
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.startAlarm();
+        alarm.deactivate("213");
+        assertTrue(alarm.getState() instanceof AlarmActiveState);
+        alarm.deactivate("123");
+        assertTrue(alarm.getState() instanceof AlarmDeactivated);
+    }
+
 
 }
