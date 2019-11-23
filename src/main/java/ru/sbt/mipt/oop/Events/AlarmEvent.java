@@ -34,16 +34,6 @@ public class AlarmEvent implements Event {
     }
 
     @Override
-    public Action getAction() {
-        return null;
-    }
-
-    @Override
-    public Action getActionToPrint() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "SensorEvent{" +
                 "type=" + this.getType() +

@@ -46,7 +46,7 @@ class AlarmTest {
     void ActivatedAlarmAfterActivateDoesnotChange() {
         Alarm alarm = new Alarm(smartHome, "123");
         alarm.activate();
-        AlarmStateInterface ala = alarm.getState();
+        AlarmState ala = alarm.getState();
         alarm.activate();
         assertEquals(ala, alarm.getState());
     }

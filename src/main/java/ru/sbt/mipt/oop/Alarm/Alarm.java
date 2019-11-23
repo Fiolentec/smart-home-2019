@@ -5,12 +5,11 @@ import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
 public class Alarm {
-    private AlarmStateInterface state;
+    private AlarmState state;
     private SmartHome smartHome;
     private final int timeSleep;
     private final String id;
     private final String code;
-    volatile boolean activeState;
 
     public Alarm(SmartHome smartHome) {
         this.id = "id";
@@ -45,33 +44,14 @@ public class Alarm {
     }
 
 
-    public void setState(AlarmStateInterface state) {
+    public void setState(AlarmState state) {
         this.state = state;
     }
 
     public void startAlarm() {
         state = new AlarmActiveState();
+        sendMessage();
         startSiren();
-        activeState = true;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (activeState) {
-                    smartHome.getRooms().forEach(room -> {
-                        room.getLights().forEach(light -> {
-                            light.setState((Math.random() > 0.5) ? States.LIGHT_OFF : States.LIGHT_ON);
-                        });
-                    });
-                    sendMessage();
-                    try {
-                        Thread.sleep(timeSleep * 1000);
-                    } catch (InterruptedException e) {
-                        System.out.println(e.toString());
-                    }
-                }
-            }
-        }
-        ).start();
     }
 
     public boolean checkCode(String code) {
@@ -82,7 +62,7 @@ public class Alarm {
         action.execute(this);
     }
 
-    public AlarmStateInterface getState() {
+    public AlarmState getState() {
         return state;
     }
 

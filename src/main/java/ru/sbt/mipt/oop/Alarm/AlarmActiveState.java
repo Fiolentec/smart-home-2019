@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.Alarm;
 
 import ru.sbt.mipt.oop.Action;
 
-public class AlarmActiveState implements AlarmStateInterface {
+public class AlarmActiveState implements AlarmState {
 
     @Override
     public Action activate() {
@@ -14,14 +14,11 @@ public class AlarmActiveState implements AlarmStateInterface {
     @Override
     public Action deactivate(String code) {
         return obj -> {
-            if (obj instanceof Alarm) {
-                if (((Alarm) obj).checkCode(code)) {
-                    System.out.println("Deactivate ActiveState with right code");
-                    ((Alarm) obj).activeState = false;
-                    ((Alarm) obj).setState(new AlarmDeactivated());
-                } else {
-                    System.out.println("You shall not pass!!! (Wrong code)");
-                }
+            if (((Alarm) obj).checkCode(code)) {
+                System.out.println("Deactivate ActiveState with right code");
+                ((Alarm) obj).setState(new AlarmDeactivated());
+            } else {
+                System.out.println("You shall not pass!!! (Wrong code)");
             }
         };
     }

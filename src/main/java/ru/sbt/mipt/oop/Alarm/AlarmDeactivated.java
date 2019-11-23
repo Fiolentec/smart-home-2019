@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.Alarm;
 
 import ru.sbt.mipt.oop.Action;
 
-public class AlarmDeactivated implements AlarmStateInterface {
+public class AlarmDeactivated implements AlarmState {
     public AlarmDeactivated() {
     }
 
@@ -10,9 +10,7 @@ public class AlarmDeactivated implements AlarmStateInterface {
     public Action activate() {
         return obj -> {
             System.out.println("Activate alarm");
-            if (obj instanceof Alarm) {
-                ((Alarm) obj).setState(new AlarmActivated());
-            }
+            ((Alarm) obj).setState(new AlarmActivated());
         };
     }
 

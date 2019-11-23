@@ -15,9 +15,5 @@ public interface Event {
 
     States getState();
 
-    Action getAction();
-
     String toString();
-
-    Action getActionToPrint();
 }
