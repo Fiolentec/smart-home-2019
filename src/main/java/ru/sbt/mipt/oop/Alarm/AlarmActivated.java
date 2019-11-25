@@ -3,25 +3,26 @@ package ru.sbt.mipt.oop.Alarm;
 import ru.sbt.mipt.oop.Action;
 
 public class AlarmActivated implements AlarmState {
+    Alarm alarm;
 
-    @Override
-    public Action activate() {
-        return obj -> {
-            System.out.println("Try activate activated alarm");
-        };
+    public AlarmActivated(Alarm alarm) {
+        this.alarm = alarm;
     }
 
     @Override
-    public Action deactivate(String code) {
-        return obj -> {
-            System.out.println("Deactivate activated alarm with code " + code);
-            if (((Alarm) obj).checkCode(code)) {
-                ((Alarm) obj).setState(new AlarmDeactivated());
-            } else {
-                ((Alarm) obj).setState(new AlarmActiveState());
-                ((Alarm) obj).startAlarm();
-            }
-        };
+    public void activate() {
+        System.out.println("Try activate activated alarm");
+    }
+
+    @Override
+    public void deactivate(String code) {
+        System.out.println("Deactivate activated alarm with code " + code);
+        if (alarm.checkCode(code)) {
+            alarm.setState(new AlarmDeactivated(alarm));
+        } else {
+            alarm.setState(new AlarmActiveState(alarm));
+            alarm.startAlarm();
+        }
     }
 
 }

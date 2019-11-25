@@ -14,7 +14,7 @@ public class Alarm {
     public Alarm(SmartHome smartHome) {
         this.id = "id";
         this.timeSleep = 5;
-        this.state = new AlarmDeactivated();
+        this.state = new AlarmDeactivated(this);
         this.smartHome = smartHome;
         this.code = "standardCode";
     }
@@ -22,7 +22,7 @@ public class Alarm {
     public Alarm(SmartHome smartHome, String code) {
         this.id = "id";
         this.timeSleep = 5;
-        this.state = new AlarmDeactivated();
+        this.state = new AlarmDeactivated(this);
         this.smartHome = smartHome;
         this.code = code;
     }
@@ -30,17 +30,17 @@ public class Alarm {
     public Alarm(SmartHome smartHome, int timeSleep, String id, String code) {
         this.timeSleep = timeSleep;
         this.id = id;
-        this.state = new AlarmDeactivated();
+        this.state = new AlarmDeactivated(this);
         this.smartHome = smartHome;
         this.code = code;
     }
 
     public void activate() {
-        execute(state.activate());
+        state.activate();
     }
 
     public void deactivate(String code) {
-        execute(state.deactivate(code));
+        state.deactivate(code);
     }
 
 
@@ -49,9 +49,7 @@ public class Alarm {
     }
 
     public void startAlarm() {
-        state = new AlarmActiveState();
-        sendMessage();
-        startSiren();
+        state = new AlarmActiveState(this);
     }
 
     public boolean checkCode(String code) {
@@ -70,11 +68,4 @@ public class Alarm {
         return smartHome;
     }
 
-    private void sendMessage() {
-        System.out.println("Sending message on number " + smartHome.getPhoneNumber());
-    }
-
-    private void startSiren() {
-        System.out.println("!!!!!!!Siren started!!!!!!!");
-    }
 }

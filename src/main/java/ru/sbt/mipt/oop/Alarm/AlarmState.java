@@ -1,10 +1,8 @@
 package ru.sbt.mipt.oop.Alarm;
 
-import ru.sbt.mipt.oop.Action;
-
 public interface AlarmState {
-    Action activate();
+    void activate();
 
-    Action deactivate(String code);
+    void deactivate(String code);
 
 }
