@@ -86,7 +86,7 @@ class AlarmTest {
     @Test
     void TryDeactivateAlarmActiveStateWithRightCode() {
         Alarm alarm = new Alarm(smartHome, "123");
-        alarm.startAlarm();
+        alarm.danger();
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmDeactivated);
     }
@@ -94,7 +94,7 @@ class AlarmTest {
     @Test
     void TryDeactivateAlarmActiveStateWithWrongCode() {
         Alarm alarm = new Alarm(smartHome, "123");
-        alarm.startAlarm();
+        alarm.danger();
         alarm.deactivate("213");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("123");

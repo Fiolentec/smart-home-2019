@@ -26,7 +26,7 @@ public class AlarmEventHandler implements EventHandler {
                         ((Alarm) obj).deactivate(((AlarmEvent) event).getCode());
                     }
                 } else if (((Alarm) obj).getState() instanceof AlarmActivated) {
-                    ((Alarm) obj).startAlarm();
+                    ((Alarm) obj).danger();
                 }
             }
 

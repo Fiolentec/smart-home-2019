@@ -43,13 +43,12 @@ public class Alarm {
         state.deactivate(code);
     }
 
-
     public void setState(AlarmState state) {
         this.state = state;
     }
 
-    public void startAlarm() {
-        state = new AlarmActiveState(this);
+    public void danger() {
+        state.danger();
     }
 
     public boolean checkCode(String code) {

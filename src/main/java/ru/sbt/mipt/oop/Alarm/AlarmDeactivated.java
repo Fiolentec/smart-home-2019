@@ -20,4 +20,9 @@ public class AlarmDeactivated implements AlarmState {
         System.out.println("Try deactivate deactivated alarm");
     }
 
+    @Override
+    public void danger() {
+        alarm.setState(new AlarmActiveState(alarm));
+    }
+
 }

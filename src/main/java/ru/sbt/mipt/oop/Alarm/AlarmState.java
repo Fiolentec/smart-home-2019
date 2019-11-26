@@ -5,4 +5,6 @@ public interface AlarmState {
 
     void deactivate(String code);
 
+    void danger();
+
 }

@@ -24,4 +24,8 @@ public class AlarmActiveState implements AlarmState {
         }
     }
 
+    @Override
+    public void danger() {
+    }
+
 }

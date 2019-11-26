@@ -1,7 +1,5 @@
 package ru.sbt.mipt.oop.Alarm;
 
-import ru.sbt.mipt.oop.Action;
-
 public class AlarmActivated implements AlarmState {
     Alarm alarm;
 
@@ -21,8 +19,13 @@ public class AlarmActivated implements AlarmState {
             alarm.setState(new AlarmDeactivated(alarm));
         } else {
             alarm.setState(new AlarmActiveState(alarm));
-            alarm.startAlarm();
+            alarm.danger();
         }
+    }
+
+    @Override
+    public void danger() {
+        alarm.setState(new AlarmActiveState(alarm));
     }
 
 }
