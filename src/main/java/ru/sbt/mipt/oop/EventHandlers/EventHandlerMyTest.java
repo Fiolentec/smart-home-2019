@@ -1,7 +1,10 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
 import org.junit.Assert;
-import ru.sbt.mipt.oop.Events.*;
+import ru.sbt.mipt.oop.Events.DoorEvent;
+import ru.sbt.mipt.oop.Events.Event;
+import ru.sbt.mipt.oop.Events.LightEvent;
+import ru.sbt.mipt.oop.Events.TypeEvent;
 import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.RoomObjects.Light;

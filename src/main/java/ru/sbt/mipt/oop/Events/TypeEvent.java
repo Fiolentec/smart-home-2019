@@ -23,11 +23,11 @@ public enum TypeEvent {
         public States getState() {
             return States.DOOR_LOCKED;
         }
-    },DOOR_UNLOCK {
+    }, DOOR_UNLOCK {
         public States getState() {
             return States.DOOR_UNLOCKED;
         }
-    },ALARM_ACTIVATE {
+    }, ALARM_ACTIVATE {
         public States getState() {
             return States.ALARM_ACTIVATE;
         }

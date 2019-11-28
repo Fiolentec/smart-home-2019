@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.RoomObjects;
 
-import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
 public interface RoomObjectInterface {

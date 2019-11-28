@@ -1,7 +1,10 @@
 package ru.sbt.mipt.oop.Alarm;
 
-import ru.sbt.mipt.oop.*;
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.Events.Event;
+import ru.sbt.mipt.oop.SmartHome;
+import ru.sbt.mipt.oop.States;
 
 public class Alarm implements Actionable {
     private AlarmStateInterface state;
@@ -18,7 +21,7 @@ public class Alarm implements Actionable {
         this.smartHome = smartHome;
     }
 
-    public Alarm(SmartHome smartHome, int timeSleep, String id,String code) {
+    public Alarm(SmartHome smartHome, int timeSleep, String id, String code) {
         this.timeSleep = timeSleep;
         this.id = id;
         this.state = new AlarmDeactivated(code);

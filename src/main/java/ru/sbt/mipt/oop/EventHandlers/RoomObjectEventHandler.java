@@ -1,11 +1,5 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
-import ru.sbt.mipt.oop.Events.Event;
-import ru.sbt.mipt.oop.RoomObjects.Door;
-import ru.sbt.mipt.oop.RoomObjects.Light;
-import ru.sbt.mipt.oop.RoomObjects.RoomObject;
-import ru.sbt.mipt.oop.SmartHome;
-
 //public class RoomObjectEventHandler extends BaseEventHandler {
 //    private Event event;
 //

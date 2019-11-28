@@ -9,28 +9,28 @@ import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
 public enum ButtonActions {
-    LightOff{
-        public Action getAction(){
+    LightOff {
+        public Action getAction() {
             return obj -> {
-                if(obj instanceof Light){
+                if (obj instanceof Light) {
                     ((Light) obj).setState(States.LIGHT_OFF);
                 }
             };
         }
     },//    Выключить свет во всем доме
-    HallDoorClose{
-        public Action getAction(){
+    HallDoorClose {
+        public Action getAction() {
             return objectUp -> {
                 if (objectUp instanceof SmartHome) {
                     ((SmartHome) objectUp).execute(obj -> {
-                        if((obj instanceof Room)&&(((Room) obj).getName().equals("hall"))){
-                            ((Room) obj).execute(object ->{
-                                if(object instanceof Door){
+                        if ((obj instanceof Room) && (((Room) obj).getName().equals("hall"))) {
+                            ((Room) obj).execute(object -> {
+                                if (object instanceof Door) {
                                     ((Door) object).setState(States.DOOR_CLOSED);
                                 }
                             });
                         }
-                        if (obj instanceof Light){
+                        if (obj instanceof Light) {
                             ((Light) obj).setState(States.LIGHT_OFF);
                         }
                     });
@@ -38,8 +38,8 @@ public enum ButtonActions {
             };
         }
     },//    Закрыть входную дверь
-    HallLightOn{
-        public Action getAction(){
+    HallLightOn {
+        public Action getAction() {
             return objectUp -> {
                 if (objectUp instanceof SmartHome) {
                     ((SmartHome) objectUp).execute(obj -> {
@@ -55,32 +55,33 @@ public enum ButtonActions {
             };
         }
     },//    Включить свет в коридоре
-    AlarmActivate{
-        public Action getAction(){
+    AlarmActivate {
+        public Action getAction() {
             return obj -> {
-                if(obj instanceof Alarm){
+                if (obj instanceof Alarm) {
                     ((Alarm) obj).activate();
                 }
             };
         }
     },//    Активировать сигнализацию
-    AlarmActiveState{
-        public Action getAction(){
+    AlarmActiveState {
+        public Action getAction() {
             return obj -> {
-                if (obj instanceof Alarm){
+                if (obj instanceof Alarm) {
                     ((Alarm) obj).startAlarm();
                 }
             };
         }
     },//    Включить режим тревоги сигнализации
-    LightOn{
-        public Action getAction(){
+    LightOn {
+        public Action getAction() {
             return obj -> {
-                if(obj instanceof Light){
+                if (obj instanceof Light) {
                     ((Light) obj).setState(States.LIGHT_ON);
                 }
             };
         }
     };//    Включить свет во всем доме
+
     abstract Action getAction();
-    }
+}

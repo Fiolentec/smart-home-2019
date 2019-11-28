@@ -2,10 +2,7 @@ package ru.sbt.mipt.oop.RoomObjects;
 
 import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Actionable;
-import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
-
-import java.util.function.Function;
 
 public class RoomObject implements RoomObjectInterface, Actionable {
     final String id;

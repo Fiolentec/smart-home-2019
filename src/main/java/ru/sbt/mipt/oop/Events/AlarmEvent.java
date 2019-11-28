@@ -1,15 +1,14 @@
 package ru.sbt.mipt.oop.Events;
 
-import ru.sbt.mipt.oop.*;
-import ru.sbt.mipt.oop.EventHandlers.AlarmEventHandler;
-import ru.sbt.mipt.oop.EventHandlers.BaseEventHandler;
+import ru.sbt.mipt.oop.GetStateToChange;
+import ru.sbt.mipt.oop.States;
 
-public class AlarmEvent extends Event implements GetStateToChange  {
-//    private TypeEvent type;
+public class AlarmEvent extends Event implements GetStateToChange {
+    //    private TypeEvent type;
     private String code;
 
     public AlarmEvent(String objectId, TypeEvent type, String code) {
-        super(objectId,type);
+        super(objectId, type);
 //        this.type = type;
         this.code = code;
     }

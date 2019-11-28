@@ -18,14 +18,14 @@ public class HallDoorEventHandler extends BaseEventHandler implements EventHandl
     }
 
     @Override
-    void handleEvent(Event event){
-        if ((event instanceof DoorEvent)&&(event.getType().equals("DOOR_CLOSE"))){
-            smartHome.execute(objectUp ->{
-                if ((objectUp instanceof Room)){
-                    ((Room) objectUp).execute(object ->{
-                        if ((object instanceof Door)&&(((Door) object).getId().equals(event.getObjectId()))&&(((Room) objectUp).getName().equals("hall"))){
+    void handleEvent(Event event) {
+        if ((event instanceof DoorEvent) && (event.getType().equals("DOOR_CLOSE"))) {
+            smartHome.execute(objectUp -> {
+                if ((objectUp instanceof Room)) {
+                    ((Room) objectUp).execute(object -> {
+                        if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId())) && (((Room) objectUp).getName().equals("hall"))) {
                             smartHome.execute(obj -> {
-                                if(obj instanceof Light){
+                                if (obj instanceof Light) {
                                     ((Light) obj).setState(States.LIGHT_OFF);
                                 }
                             });

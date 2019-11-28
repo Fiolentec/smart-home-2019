@@ -18,7 +18,7 @@ public class AlarmEventHandler extends BaseEventHandler implements EventHandler 
     @Override
     void handleEvent(Event event) {
         smartHome.execute(obj -> {
-            if(obj instanceof Alarm){
+            if (obj instanceof Alarm) {
                 if (event.getState().equals(States.ALARM_ACTIVATE)) {
                     ((Alarm) obj).activate();
                 } else if (event.getState().equals(States.ALARM_DEACTIVATE)) {

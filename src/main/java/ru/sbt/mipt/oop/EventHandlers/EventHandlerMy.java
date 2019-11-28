@@ -1,9 +1,6 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
-import ru.sbt.mipt.oop.API.SensorEventsManager;
-import ru.sbt.mipt.oop.Events.DoorEvent;
 import ru.sbt.mipt.oop.Events.Event;
-import ru.sbt.mipt.oop.Events.LightEvent;
 import ru.sbt.mipt.oop.SmartHome;
 
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ public class EventHandlerMy {
 
     public void handleEvent(Event event) {
         System.out.println("Got event: " + event);
-        eventHandlers.forEach(object ->{
+        eventHandlers.forEach(object -> {
             object.handleEvent(event);
         });
     }

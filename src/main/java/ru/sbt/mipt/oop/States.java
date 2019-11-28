@@ -21,12 +21,12 @@ public enum States {
             return " was closed.";
         }
     },
-    DOOR_LOCKED{
+    DOOR_LOCKED {
         public String getString() {
             return " was locked.";
         }
     },
-    DOOR_UNLOCKED{
+    DOOR_UNLOCKED {
         public String getString() {
             return " was unlocked.";
         }

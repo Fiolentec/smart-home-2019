@@ -1,8 +1,6 @@
 package ru.sbt.mipt.oop;
 
 import com.google.gson.Gson;
-import ru.sbt.mipt.oop.RoomObjects.Door;
-import ru.sbt.mipt.oop.RoomObjects.Light;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,7 +27,6 @@ public class JsonSmartHomeStateProvider implements SmartHomeProvider {
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
         return smartHome;
     }
-
 
 
 }

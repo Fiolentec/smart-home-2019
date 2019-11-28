@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.API;
 
 /**
  * Available event types in library v3.7.1:
- *    "LightIsOn", "LightIsOff", "DoorIsOpen", "DoorIsClosed", "DoorIsLocked", "DoorIsUnlocked"
+ * "LightIsOn", "LightIsOff", "DoorIsOpen", "DoorIsClosed", "DoorIsLocked", "DoorIsUnlocked"
  */
 public class CCSensorEvent {
     private final String eventType;
@@ -10,8 +10,9 @@ public class CCSensorEvent {
 
     /**
      * Default constructor
+     *
      * @param eventType - defines type of event.
-     * @param objectId - id of the object which fired the event (door/lightswitch)
+     * @param objectId  - id of the object which fired the event (door/lightswitch)
      */
     public CCSensorEvent(String eventType, String objectId) {
         this.eventType = eventType;

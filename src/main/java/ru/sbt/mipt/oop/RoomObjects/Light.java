@@ -5,8 +5,6 @@ import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
-import java.util.function.Function;
-
 public class Light extends RoomObject implements RoomObjectInterface, Actionable {
     private States isOn;
     private static final String[] st = {" was turned on.", " was turned off."};

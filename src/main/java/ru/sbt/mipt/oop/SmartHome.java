@@ -1,10 +1,7 @@
 package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.Alarm.Alarm;
-import ru.sbt.mipt.oop.RemoteControlls.RemoteControl;
-import ru.sbt.mipt.oop.RoomObjects.Door;
-import ru.sbt.mipt.oop.RoomObjects.Light;
-import ru.sbt.mipt.oop.RoomObjects.RoomObject;
+import ru.sbt.mipt.oop.rc.RemoteControl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,14 +41,11 @@ public class SmartHome implements Actionable {
         rooms.forEach(room -> {
             room.execute(action);
         });
-//        controllers.forEach(controller ->{
-//            controller.execute(action);
-//        });
         alarm.execute(action);
         action.execute(this);
     }
 
-    public void addRemoteController(RemoteControl remoteController){
+    public void addRemoteController(RemoteControl remoteController) {
         controllers.add(remoteController);
     }
 

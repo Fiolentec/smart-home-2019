@@ -2,10 +2,8 @@ package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.RoomObjects.Light;
-import ru.sbt.mipt.oop.RoomObjects.RoomObject;
 
 import java.util.Collection;
-import java.util.function.Function;
 
 public class Room implements Actionable {
     private Collection<Light> lights;

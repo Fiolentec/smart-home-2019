@@ -5,7 +5,6 @@ import ru.sbt.mipt.oop.API.EventHandler;
 import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.Events.EventsAdapter;
 import ru.sbt.mipt.oop.Events.LightEvent;
-import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
 

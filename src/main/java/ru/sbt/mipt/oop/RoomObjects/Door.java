@@ -5,8 +5,6 @@ import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
-import java.util.function.Function;
-
 public class Door extends RoomObject implements RoomObjectInterface, Actionable {
     private States isOpen;
     private SmartHome home;

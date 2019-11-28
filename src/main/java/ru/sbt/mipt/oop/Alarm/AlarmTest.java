@@ -9,7 +9,8 @@ import ru.sbt.mipt.oop.SmartHome;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AlarmTest {
     Light light1 = new Light("1", "LIGHT_OFF");
@@ -36,28 +37,28 @@ class AlarmTest {
 
     @Test
     void DeactivatedAlarmAfterActivateBecomeActivated() {
-        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
         alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActivated);
     }
 
     @Test
     void ActivatedAlarmAfterActivateDoesnotChange() {
-        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
         AlarmStateInterface ala = alarm.getState();
         assertEquals(ala, alarm.getState());
     }
 
     @Test
     void ActivatedAlarmAfterRightDeactivateBecomeDeactivatedAlarm() {
-        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmDeactivated);
     }
 
     @Test
     void ActivatedAlarmAfterNotRightDeactivateBecomeActiveStateAlarm() {
-        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
         alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
@@ -65,7 +66,7 @@ class AlarmTest {
 
     @Test
     void ActiveStateAlarmDoesnotChangesAfterDeactivateAndActivate() {
-        Alarm alarm = new Alarm(smartHome,5,"alarmid","123");
+        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
         alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);

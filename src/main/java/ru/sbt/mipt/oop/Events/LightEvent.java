@@ -10,7 +10,7 @@ public class LightEvent extends Event implements GetStateToChange {
 //    private TypeEvent type;
 
     public LightEvent(String id, TypeEvent type) {
-        super(id,type);
+        super(id, type);
 //        this.type = type;
     }
 

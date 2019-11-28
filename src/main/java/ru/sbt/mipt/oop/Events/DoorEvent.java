@@ -9,7 +9,7 @@ import ru.sbt.mipt.oop.States;
 public class DoorEvent extends Event implements GetStateToChange, GetAction, GetActionToPrint {
 
     public DoorEvent(String id, TypeEvent type) {
-        super(id,type);
+        super(id, type);
     }
 
     @Override
