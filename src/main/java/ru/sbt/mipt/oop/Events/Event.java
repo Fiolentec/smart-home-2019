@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop.Events;
 
 import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Events.Types.BaseEventConverter;
 import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 

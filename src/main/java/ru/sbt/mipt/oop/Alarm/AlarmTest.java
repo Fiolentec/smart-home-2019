@@ -37,28 +37,31 @@ class AlarmTest {
 
     @Test
     void DeactivatedAlarmAfterActivateBecomeActivated() {
-        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
+        Alarm alarm = new Alarm(smartHome, "123");
         alarm.activate();
         assertTrue(alarm.getState() instanceof AlarmActivated);
     }
 
     @Test
     void ActivatedAlarmAfterActivateDoesnotChange() {
-        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
-        AlarmStateInterface ala = alarm.getState();
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
+        AlarmState ala = alarm.getState();
+        alarm.activate();
         assertEquals(ala, alarm.getState());
     }
 
     @Test
     void ActivatedAlarmAfterRightDeactivateBecomeDeactivatedAlarm() {
-        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.activate();
         alarm.deactivate("123");
         assertTrue(alarm.getState() instanceof AlarmDeactivated);
     }
 
     @Test
     void ActivatedAlarmAfterNotRightDeactivateBecomeActiveStateAlarm() {
-        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
+        Alarm alarm = new Alarm(smartHome, "123");
         alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
@@ -66,7 +69,7 @@ class AlarmTest {
 
     @Test
     void ActiveStateAlarmDoesnotChangesAfterDeactivateAndActivate() {
-        Alarm alarm = new Alarm(smartHome, 5, "alarmid", "123");
+        Alarm alarm = new Alarm(smartHome, "123");
         alarm.activate();
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
@@ -74,6 +77,29 @@ class AlarmTest {
         assertTrue(alarm.getState() instanceof AlarmActiveState);
         alarm.deactivate("1236");
         assertTrue(alarm.getState() instanceof AlarmActiveState);
+        alarm.activate();
+        assertTrue(alarm.getState() instanceof AlarmActiveState);
+        alarm.activate();
+        assertTrue(alarm.getState() instanceof AlarmActiveState);
     }
+
+    @Test
+    void TryDeactivateAlarmActiveStateWithRightCode() {
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.danger();
+        alarm.deactivate("123");
+        assertTrue(alarm.getState() instanceof AlarmDeactivated);
+    }
+
+    @Test
+    void TryDeactivateAlarmActiveStateWithWrongCode() {
+        Alarm alarm = new Alarm(smartHome, "123");
+        alarm.danger();
+        alarm.deactivate("213");
+        assertTrue(alarm.getState() instanceof AlarmActiveState);
+        alarm.deactivate("123");
+        assertTrue(alarm.getState() instanceof AlarmDeactivated);
+    }
+
 
 }

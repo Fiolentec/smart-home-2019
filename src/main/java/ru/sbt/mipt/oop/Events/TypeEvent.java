@@ -3,6 +3,7 @@ package ru.sbt.mipt.oop.Events;
 import ru.sbt.mipt.oop.States;
 
 public enum TypeEvent {
+//    "LightIsOn", "LightIsOff", "DoorIsOpen", "DoorIsClosed", "DoorIsLocked", "DoorIsUnlocked"
     LIGHT_ON {
         public States getState() {
             return States.LIGHT_ON;
@@ -19,11 +20,11 @@ public enum TypeEvent {
         public States getState() {
             return States.DOOR_CLOSED;
         }
-    }, DOOR_LOCK {
+    }, DOOR_LOCK{
         public States getState() {
             return States.DOOR_LOCKED;
         }
-    }, DOOR_UNLOCK {
+    }, DOOR_UNLOCK{
         public States getState() {
             return States.DOOR_UNLOCKED;
         }

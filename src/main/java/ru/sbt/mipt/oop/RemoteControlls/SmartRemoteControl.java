@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SmartRemoteControl implements RemoteControl {
-    private String[] seasons = {"A", "B", "C", "D", "1", "2", "3", "4"};
+    private String[] buttons = {"A", "B", "C", "D", "1", "2", "3", "4"};
     private HashMap<String, BaseAction> actions;
 
     public SmartRemoteControl(ArrayList<BaseAction> act) {
         for (int i = 0; i < act.size(); i++) {
-            actions.put(seasons[i], act.get(i));
+            actions.put(buttons[i], act.get(i));
         }
     }
 

@@ -7,7 +7,7 @@ import ru.sbt.mipt.oop.SmartHome;
 public class DangerAlarm extends BaseAction {
     private static Action action = obj -> {
         if (obj instanceof Alarm) {
-            ((Alarm) obj).startAlarm();
+            ((Alarm) obj).danger();
         }
     };
 

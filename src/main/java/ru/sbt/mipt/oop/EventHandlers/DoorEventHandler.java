@@ -1,35 +1,32 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
-import ru.sbt.mipt.oop.API.CCSensorEvent;
-import ru.sbt.mipt.oop.API.EventHandler;
 import ru.sbt.mipt.oop.Events.DoorEvent;
 import ru.sbt.mipt.oop.Events.Event;
-import ru.sbt.mipt.oop.Events.EventsAdapter;
+import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.SmartHome;
 
-public class DoorEventHandler extends BaseEventHandler implements EventHandler {
+public class DoorEventHandler implements BaseEventHandler {
+    SmartHome smartHome;
 
     public DoorEventHandler(SmartHome smartHome) {
-        super(smartHome);
+        this.smartHome = smartHome;
     }
 
     @Override
-    void handleEvent(Event event) {
+    public void handleEvent(Event event) {
         if (event instanceof DoorEvent) {
-            smartHome.execute(object -> {
-                if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId()))) {
-                    ((Door) object).setState(event.getState());
-                    smartHome.execute(event.getActionToPrint());
+            smartHome.execute(objectUp -> {
+                if (objectUp instanceof Room) {
+                    ((Room) objectUp).execute(object -> {
+                        if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId()))) {
+                            ((Door) object).setState(event.getState());
+                            String s = String.format("Door %s in room %s %s", ((Door) object).getId(), ((Room) objectUp).getName(), ((Door) object).getState().getString());
+                            System.out.println(s);
+                        }
+                    });
                 }
             });
         }
-    }
-
-    @Override
-    public void handleEvent(CCSensorEvent sensorEvent) {
-        EventsAdapter eventsAdapter = new EventsAdapter(sensorEvent);
-        Event event = eventsAdapter.getAdaptedEvent();
-        handleEvent(event);
     }
 }

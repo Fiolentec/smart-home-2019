@@ -1,24 +1,22 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
-import ru.sbt.mipt.oop.API.CCSensorEvent;
-import ru.sbt.mipt.oop.API.EventHandler;
 import ru.sbt.mipt.oop.Events.DoorEvent;
 import ru.sbt.mipt.oop.Events.Event;
-import ru.sbt.mipt.oop.Events.EventsAdapter;
 import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Door;
 import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
-public class HallDoorEventHandler extends BaseEventHandler implements EventHandler {
+public class HallDoorEventHandler implements BaseEventHandler {
+    SmartHome smartHome;
 
     public HallDoorEventHandler(SmartHome smartHome) {
-        super(smartHome);
+        this.smartHome = smartHome;
     }
 
     @Override
-    void handleEvent(Event event) {
+    public void handleEvent(Event event) {
         if ((event instanceof DoorEvent) && (event.getType().equals("DOOR_CLOSE"))) {
             smartHome.execute(objectUp -> {
                 if ((objectUp instanceof Room)) {
@@ -34,12 +32,5 @@ public class HallDoorEventHandler extends BaseEventHandler implements EventHandl
                 }
             });
         }
-    }
-
-    @Override
-    public void handleEvent(CCSensorEvent sensorEvent) {
-        EventsAdapter eventsAdapter = new EventsAdapter(sensorEvent);
-        Event event = eventsAdapter.getAdaptedEvent();
-        handleEvent(event);
     }
 }

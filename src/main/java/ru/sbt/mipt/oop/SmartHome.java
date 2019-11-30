@@ -22,14 +22,14 @@ public class SmartHome implements Actionable {
         this.rooms = rooms;
         this.phoneNumber = "8-800-555-35-35";
         alarm = new Alarm(this);
-        rooms.forEach(room -> {
-            room.setHome(this);
-        });
     }
 
     public void addRoom(Room room) {
         rooms.add(room);
-        room.setHome(this);
+    }
+
+    public Alarm getAlarm() {
+        return alarm;
     }
 
     public Collection<Room> getRooms() {
