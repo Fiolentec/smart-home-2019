@@ -1,7 +1,9 @@
 package ru.sbt.mipt.oop;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import ru.sbt.mipt.oop.API.SensorEventsManager;
 import ru.sbt.mipt.oop.EventHandlers.*;
 import ru.sbt.mipt.oop.Events.EventsAdapter;
@@ -20,26 +22,31 @@ public class HomeConfiguration {
     }
 
     @Bean
+    @Primary
     BaseEventHandler eventHandler(List<BaseEventHandler> eventHandlers){
         return new EventProcessor(readSmartHome(), eventHandlers);
     }
 
     @Bean
+    @Qualifier("doorHandler")
     BaseEventHandler doorEventHandler(){
         return new DoorEventHandler(readSmartHome());
     }
 
     @Bean
+    @Qualifier("lightHandler")
     BaseEventHandler lightEventHandler(){
         return new LightEventHandler(readSmartHome());
     }
 
     @Bean
+    @Qualifier("hallDoorHandler")
     BaseEventHandler HallDoorEventHandler(){
         return new HallDoorEventHandler(readSmartHome());
     }
 
     @Bean
+    @Qualifier("alarmHandler")
     BaseEventHandler AlarmEventHandler(){
         return new AlarmEventHandler(readSmartHome());
     }
@@ -76,6 +83,7 @@ public class HomeConfiguration {
     }
 
     @Bean
+    @Primary
     BaseEventConverter baseEventConverter(LightOffEventConverter lightOffEventConverter){
         return new LightOnEventConverter(lightOffEventConverter);
     }
